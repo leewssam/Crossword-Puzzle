@@ -31,8 +31,9 @@ namespace SEF_Assignment.Controllers
 
         public ActionResult RankingBoardLec()
         {
-
-            return View();
+            Session["LecID"] = Session["LecID"];
+            TempData["userID"] = TempData["userID"];
+            return RedirectToAction("RankingBoard", "ManageClass");
         }
 
         public ActionResult DiscussionBoardLec()

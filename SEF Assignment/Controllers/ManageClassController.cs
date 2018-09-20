@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -27,6 +28,15 @@ namespace SEF_Assignment.Controllers
             return RedirectToAction("ManageClass");
         }
 
+        [HttpGet]
+        public ActionResult RankingBoard()
+        {
+            Session["LecID"] = Session["LecID"];
+            TempData["step"] = "rankingboard";
+            return RedirectToAction("ClassList");
+
+        }
+        [HttpGet]
 
         public ActionResult ManageClass()
         {
@@ -130,7 +140,7 @@ namespace SEF_Assignment.Controllers
 
             if (action.Equals("home"))
             {
-                return RedirectToAction("ChooseIdentity", "login");
+                return RedirectToAction("HomeLec", "HomeLec");
             }
 
             else if (action.Equals("back"))
@@ -218,14 +228,24 @@ namespace SEF_Assignment.Controllers
         [HttpPost]
         public ActionResult ClassList (ClassesList cl, string action)
         {
+
             if (action.Equals("home"))
             {
-                return RedirectToAction("ChooseIdentity", "login");
+                return RedirectToAction("HomeLec", "HomeLec");
             }
 
             else if (action.Equals("back"))
             {
-                return RedirectToAction("ManageClass");
+                String currentstep = TempData["step"].ToString();
+
+                if (currentstep.Equals("rankingboard"))
+                {
+                    return RedirectToAction("HomeLec", "HomeLec");
+                }
+                else
+                {
+                    return RedirectToAction("ManageClass");
+                }
             }
 
             else if (action.Equals("submit"))
@@ -268,12 +288,92 @@ namespace SEF_Assignment.Controllers
                     return RedirectToAction("PuzzleList");
                 }
 
+                else if (currentstep.Equals("rankingboard"))
+                {
+                    return RedirectToAction("CreateRanking");
+                }
+
 
 
             }
             return View();
         }
 
+        [HttpGet]
+        public ActionResult CreateRanking()
+        {
+            String ClassID = Session["Class"].ToString();
+            string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
+
+            sqlConnection.Open();
+
+            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_ID FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "'");
+            sqlCommand.Connection = sqlConnection;
+            SqlDataReader myreader = sqlCommand.ExecuteReader();
+
+            List<String> StudentIDList = new List<String>();
+            List<String> StudentNameList = new List<String>();
+            List<String> TotalScoreList = new List<string>();
+            while (myreader.Read())
+            {
+                StudentIDList.Add(myreader[0].ToString());
+            }
+            myreader.Close();
+
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_Name FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "'");
+            sqlCommand.Connection = sqlConnection;
+
+            SqlDataReader newreader = sqlCommand.ExecuteReader();
+
+            while (newreader.Read())
+            {
+                StudentNameList.Add(newreader[0].ToString());
+            }
+            newreader.Close();
+
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_TotalScore FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "'");
+            sqlCommand.Connection = sqlConnection;
+
+            SqlDataReader mynewreader = sqlCommand.ExecuteReader();
+
+            while (mynewreader.Read())
+            {
+                TotalScoreList.Add(mynewreader[0].ToString());
+            }
+
+            mynewreader.Close();
+
+            List<CreateRanking> Student = new List<CreateRanking>();
+
+            for (int i = 0; i < StudentIDList.Count; i++)
+            {
+                Student.Add(new CreateRanking() { StudentID = StudentIDList[i], StudentName = StudentNameList[i], TotalScore = TotalScoreList[i] });
+            }
+
+            RankingsList CL = new RankingsList();
+            CL.ViewRankingList = Student;
+            return View(CL);
+        }
+
+        [HttpPost]
+        public ActionResult CreateRanking(String action)
+        {
+            if (action.Equals("home"))
+            {
+                return RedirectToAction("HomeLec", "HomeLec");
+            }
+
+            else if (action.Equals("back"))
+            {
+
+                return RedirectToAction("HomeLec", "HomeLec");
+
+            }
+
+            return View();
+        }
+        
         [HttpGet]
         public ActionResult PuzzleList()
         {
@@ -331,7 +431,7 @@ namespace SEF_Assignment.Controllers
             Session["Class"] = Session["Class"];
             if (action.Equals("home"))
             {
-                return RedirectToAction("ChooseIdentity", "login");
+                return RedirectToAction("HomeLec", "HomeLec");
             }
 
             else if (action.Equals("back"))
@@ -426,7 +526,7 @@ namespace SEF_Assignment.Controllers
         {
             if (action.Equals("home"))
             {
-                return RedirectToAction("ChooseIdentity", "login");
+                return RedirectToAction("HomeLec", "HomeLec");
             }
 
             else if (action.Equals("back"))
@@ -507,7 +607,7 @@ namespace SEF_Assignment.Controllers
         {
             if (action.Equals("home"))
             {
-                return RedirectToAction("ChooseIdentity", "login");
+                return RedirectToAction("HomeLec", "HomeLec");
             }
 
             else if (action.Equals("back"))
@@ -681,7 +781,7 @@ namespace SEF_Assignment.Controllers
 
             if (action.Equals("home"))
             {
-                return RedirectToAction("ChooseIdentity", "login");
+                return RedirectToAction("HomeLec", "HomeLec");
             }
 
             else if (action.Equals("back"))
@@ -805,7 +905,7 @@ namespace SEF_Assignment.Controllers
             string path = String.Format("D:\\Users\\Sam\\Desktop\\Projects\\SEF\\SEF Assignment\\PDF");
 
             Session["LecID"] = Session["LecID"];
-            Session["Class"] = TempData["Class"];
+            Session["Class"] = Session["Class"];
             String LecID = Session["LecID"].ToString();
             String selectedclass = Session["Class"].ToString();
             PdfWriter.GetInstance(doc1, new FileStream(path + "\\"+selectedclass+"_StudentList.pdf", FileMode.Create));
@@ -814,7 +914,7 @@ namespace SEF_Assignment.Controllers
 
             if (action.Equals("home"))
             {
-                return RedirectToAction("ChooseIdentity", "login");
+                return RedirectToAction("HomeLec", "HomeLec");
             }
 
             else if (action.Equals("back"))
@@ -939,7 +1039,7 @@ namespace SEF_Assignment.Controllers
             
             if (action.Equals("home"))
             {
-                return RedirectToAction("ChooseIdentity", "login");
+                return RedirectToAction("HomeLec", "HomeLec");
             }
 
             else if (action.Equals("back"))

@@ -13,13 +13,18 @@ namespace SEF_Assignment
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
             routes.MapRoute(
-                "ManageClass",
-                "ManageClass/{id}",
-                new { controller = "ManageClass", action = "ManageClass", id = UrlParameter.Optional }
+                name: "RankingBoard",
+                url: "RankingBoard",
+                defaults: new { controller = "ManageClass", action = "CreateRanking", id = UrlParameter.Optional }
             );
 
-            routes.MapMvcAttributeRoutes();
+            routes.MapRoute(
+                 "ManageClass",
+                 "ManageClass/{action}/{id}",
+                 new { controller = "ManageClass", action = "ManageClass", id = UrlParameter.Optional }
+             );
 
             routes.MapRoute(
                 name: "Default",
@@ -27,7 +32,7 @@ namespace SEF_Assignment
                 defaults: new { controller = "Login", action = "ChooseIdentity", id = UrlParameter.Optional }
             );
 
-            
+
         }
     }
 }
