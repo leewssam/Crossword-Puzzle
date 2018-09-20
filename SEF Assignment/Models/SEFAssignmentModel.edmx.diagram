@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a4bbe2f4b5124fe790cd2d16615c035c" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="Model.Answer" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Attempt" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Class" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Comment" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lecturer" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Puzzle" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Topic" Width="1.5" PointX="10.5" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__Answer__Puzzle_I__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Attempt__Puzzle___4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Attempt__Stu_ID__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Class_Lecturer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Student_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Comment__Lec_ID__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Comment__Stu_ID__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Comment__Topic_I__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Topic__Lec_ID__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Puzzle_Lecturer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Question__Puzzle__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Topic__Stu_ID__4E88ABD4" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

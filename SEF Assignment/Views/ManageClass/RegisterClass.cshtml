@@ -1,0 +1,76 @@
+﻿@using SEF_Assignment.Models
+@using SEF_Assignment.ViewModel
+@model SEF_Assignment.ViewModel.RegisterClass
+
+
+
+@{
+    ViewBag.Title = "RegisterClass";
+    Layout = "_ManageClassLayout.cshtml";
+}
+
+<body class="registerclassStyle">
+
+<div>
+@Html.BeginForm()
+{
+<div class="row text-left">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+        <h2 class="header">Register Class</h2>
+    </div>
+    <div class="col-md-1">
+        <button class="btn backBtn" name="action" value="home">Home</button>
+    </div>
+    <div class="col-md-1">
+        <button class="btn backBtn" name="action" value="back">Back</button>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+   @Html.AntiForgeryToken()
+    
+    <div class="row">
+        <div class="col-xs-1 col-lg-3"></div>
+        <div class="col-xs-10 col-lg-6 formContainer form-inline">
+            <div class="row">
+                <div class="textboxContainer">
+                    @Html.LabelFor(model => model.Class_ID, htmlAttributes: new {@class = "control-label col-md-4"})
+                    @Html.EditorFor(model => model.Class_ID, new {htmlAttributes = new {@class = "form-control", @readonly = "readonly", autocomplete = "off"}})
+                </div>
+                <div class="row text-left">
+                    <div class="col-md-4"></div>
+                    @Html.ValidationMessageFor(model => model.Class_ID, "", new {@class = "text-danger col-md-6"})
+                </div>
+
+                <br/>
+                <div class="row">
+                    <div class="textboxContainer">
+                        @Html.LabelFor(model => model.Class_Name, htmlAttributes: new {@class = "control-label col-md-4"})
+                        @Html.EditorFor(model => model.Class_Name, new {htmlAttributes = new {@class = "form-control", autocomplete = "off"}})
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        @Html.ValidationMessageFor(model => model.Class_Name, "", new {@class = "text-danger col-md-6"})
+                    </div>
+                </div>
+
+                <br/>
+                <div class="row text-center">
+                    <div class="col-xs-1 col-lg-3"></div>
+                    <div class="col-xs-10 col-lg-6">
+                        <button type="register" name="action" value="register" class="btn btn-lg registerBtn">Register Class</button>
+                   
+                    </div>
+                    <div class="col-xs-1 col-lg-3"></div>
+                </div>
+
+            </div>
+            <div class="col-xs-1 col-lg-3"></div>
+        </div>
+    </div>
+    }
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")

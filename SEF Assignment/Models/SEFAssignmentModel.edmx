@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Answer_ID" />
+            <PropertyRef Name="Puzzle_ID" />
+          </Key>
+          <Property Name="Answer_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Answer_Content" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Puzzle_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Attempt">
+          <Key>
+            <PropertyRef Name="Stu_ID" />
+            <PropertyRef Name="Puzzle_ID" />
+          </Key>
+          <Property Name="Stu_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Puzzle_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Puzzle_Status" Type="tinyint" Nullable="false" />
+          <Property Name="Attempt_Score" Type="int" Nullable="false" />
+          <Property Name="DateTime_Stamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Class_ID" />
+          </Key>
+          <Property Name="Class_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Class_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Lec_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Comment_ID" />
+          </Key>
+          <Property Name="Stu_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Lec_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Topic_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Comment_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Comment_Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="Lec_ID" />
+          </Key>
+          <Property Name="Lec_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Lec_Pass" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Lec_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Lec_Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lec_PhoneNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Puzzle">
+          <Key>
+            <PropertyRef Name="Puzzle_ID" />
+          </Key>
+          <Property Name="Puzzle_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Puzzle_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Puzzle_Score" Type="int" Nullable="false" />
+          <Property Name="Hint_Score" Type="int" Nullable="false" />
+          <Property Name="Lec_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Question_ID" />
+            <PropertyRef Name="Puzzle_ID" />
+          </Key>
+          <Property Name="Question_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Question_Content" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Puzzle_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Stu_ID" />
+          </Key>
+          <Property Name="Stu_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Stu_Pass" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Stu_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Stu_Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stu_PhoneNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Stu_TotalScore" Type="int" Nullable="false" />
+          <Property Name="Class_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Topic_ID" />
+          </Key>
+          <Property Name="Stu_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Lec_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Topic_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Topic_Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Topic_Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Answer__Puzzle_I__47DBAE45">
+          <End Role="Puzzle" Type="Self.Puzzle" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puzzle">
+              <PropertyRef Name="Puzzle_ID" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="Puzzle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attempt__Puzzle___4BAC3F29">
+          <End Role="Puzzle" Type="Self.Puzzle" Multiplicity="1" />
+          <End Role="Attempt" Type="Self.Attempt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puzzle">
+              <PropertyRef Name="Puzzle_ID" />
+            </Principal>
+            <Dependent Role="Attempt">
+              <PropertyRef Name="Puzzle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attempt__Stu_ID__4AB81AF0">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Attempt" Type="Self.Attempt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Stu_ID" />
+            </Principal>
+            <Dependent Role="Attempt">
+              <PropertyRef Name="Stu_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__Lec_ID__534D60F1">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Lec_ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Lec_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__Stu_ID__52593CB8">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Stu_ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Stu_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__Topic_I__5441852A">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="Topic_ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Puzzle__44FF419A">
+          <End Role="Puzzle" Type="Self.Puzzle" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puzzle">
+              <PropertyRef Name="Puzzle_ID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="Puzzle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic__Lec_ID__4F7CD00D">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Lec_ID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="Lec_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic__Stu_ID__4E88ABD4">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Stu_ID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="Stu_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Class_Lecturer">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Lec_ID" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="Lec_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Puzzle_Lecturer">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="1" />
+          <End Role="Puzzle" Type="Self.Puzzle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Lec_ID" />
+            </Principal>
+            <Dependent Role="Puzzle">
+              <PropertyRef Name="Lec_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Class_ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Class_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attempt" EntityType="Self.Attempt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lecturer" EntityType="Self.Lecturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Puzzle" EntityType="Self.Puzzle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Answer__Puzzle_I__47DBAE45" Association="Self.FK__Answer__Puzzle_I__47DBAE45">
+            <End Role="Puzzle" EntitySet="Puzzle" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attempt__Puzzle___4BAC3F29" Association="Self.FK__Attempt__Puzzle___4BAC3F29">
+            <End Role="Puzzle" EntitySet="Puzzle" />
+            <End Role="Attempt" EntitySet="Attempt" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attempt__Stu_ID__4AB81AF0" Association="Self.FK__Attempt__Stu_ID__4AB81AF0">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Attempt" EntitySet="Attempt" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__Lec_ID__534D60F1" Association="Self.FK__Comment__Lec_ID__534D60F1">
+            <End Role="Lecturer" EntitySet="Lecturer" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__Stu_ID__52593CB8" Association="Self.FK__Comment__Stu_ID__52593CB8">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__Topic_I__5441852A" Association="Self.FK__Comment__Topic_I__5441852A">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Puzzle__44FF419A" Association="Self.FK__Question__Puzzle__44FF419A">
+            <End Role="Puzzle" EntitySet="Puzzle" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic__Lec_ID__4F7CD00D" Association="Self.FK__Topic__Lec_ID__4F7CD00D">
+            <End Role="Lecturer" EntitySet="Lecturer" />
+            <End Role="Topic" EntitySet="Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic__Stu_ID__4E88ABD4" Association="Self.FK__Topic__Stu_ID__4E88ABD4">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Topic" EntitySet="Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Class_Lecturer" Association="Self.FK_Class_Lecturer">
+            <End Role="Lecturer" EntitySet="Lecturer" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Puzzle_Lecturer" Association="Self.FK_Puzzle_Lecturer">
+            <End Role="Lecturer" EntitySet="Lecturer" />
+            <End Role="Puzzle" EntitySet="Puzzle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Class" Association="Self.FK_Student_Class">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Answer_ID" />
+            <PropertyRef Name="Puzzle_ID" />
+          </Key>
+          <Property Name="Answer_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Answer_Content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puzzle_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Puzzle" Relationship="Self.FK__Answer__Puzzle_I__47DBAE45" FromRole="Answer" ToRole="Puzzle" />
+        </EntityType>
+        <EntityType Name="Attempt">
+          <Key>
+            <PropertyRef Name="Stu_ID" />
+            <PropertyRef Name="Puzzle_ID" />
+          </Key>
+          <Property Name="Stu_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puzzle_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puzzle_Status" Type="Byte" Nullable="false" />
+          <Property Name="Attempt_Score" Type="Int32" Nullable="false" />
+          <Property Name="DateTime_Stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Puzzle" Relationship="Self.FK__Attempt__Puzzle___4BAC3F29" FromRole="Attempt" ToRole="Puzzle" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Attempt__Stu_ID__4AB81AF0" FromRole="Attempt" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Class_ID" />
+          </Key>
+          <Property Name="Class_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Class_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lec_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Lecturer" Relationship="Self.FK_Class_Lecturer" FromRole="Class" ToRole="Lecturer" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Student_Class" FromRole="Class" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Comment_ID" />
+          </Key>
+          <Property Name="Stu_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Lec_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Topic_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment_Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Lecturer" Relationship="Self.FK__Comment__Lec_ID__534D60F1" FromRole="Comment" ToRole="Lecturer" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Comment__Stu_ID__52593CB8" FromRole="Comment" ToRole="Student" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK__Comment__Topic_I__5441852A" FromRole="Comment" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="Lec_ID" />
+          </Key>
+          <Property Name="Lec_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lec_Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lec_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lec_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lec_PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Classes" Relationship="Self.FK_Class_Lecturer" FromRole="Lecturer" ToRole="Class" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK__Comment__Lec_ID__534D60F1" FromRole="Lecturer" ToRole="Comment" />
+          <NavigationProperty Name="Topics" Relationship="Self.FK__Topic__Lec_ID__4F7CD00D" FromRole="Lecturer" ToRole="Topic" />
+          <NavigationProperty Name="Puzzles" Relationship="Self.FK_Puzzle_Lecturer" FromRole="Lecturer" ToRole="Puzzle" />
+        </EntityType>
+        <EntityType Name="Puzzle">
+          <Key>
+            <PropertyRef Name="Puzzle_ID" />
+          </Key>
+          <Property Name="Puzzle_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puzzle_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puzzle_Score" Type="Int32" Nullable="false" />
+          <Property Name="Hint_Score" Type="Int32" Nullable="false" />
+          <Property Name="Lec_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK__Answer__Puzzle_I__47DBAE45" FromRole="Puzzle" ToRole="Answer" />
+          <NavigationProperty Name="Attempts" Relationship="Self.FK__Attempt__Puzzle___4BAC3F29" FromRole="Puzzle" ToRole="Attempt" />
+          <NavigationProperty Name="Lecturer" Relationship="Self.FK_Puzzle_Lecturer" FromRole="Puzzle" ToRole="Lecturer" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Question__Puzzle__44FF419A" FromRole="Puzzle" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Question_ID" />
+            <PropertyRef Name="Puzzle_ID" />
+          </Key>
+          <Property Name="Question_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Question_Content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puzzle_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Puzzle" Relationship="Self.FK__Question__Puzzle__44FF419A" FromRole="Question" ToRole="Puzzle" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Stu_ID" />
+          </Key>
+          <Property Name="Stu_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stu_Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stu_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stu_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stu_PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stu_TotalScore" Type="Int32" Nullable="false" />
+          <Property Name="Class_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Attempts" Relationship="Self.FK__Attempt__Stu_ID__4AB81AF0" FromRole="Student" ToRole="Attempt" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_Student_Class" FromRole="Student" ToRole="Class" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK__Comment__Stu_ID__52593CB8" FromRole="Student" ToRole="Comment" />
+          <NavigationProperty Name="Topics" Relationship="Self.FK__Topic__Stu_ID__4E88ABD4" FromRole="Student" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Topic_ID" />
+          </Key>
+          <Property Name="Stu_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Lec_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Topic_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Topic_Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Topic_Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK__Comment__Topic_I__5441852A" FromRole="Topic" ToRole="Comment" />
+          <NavigationProperty Name="Lecturer" Relationship="Self.FK__Topic__Lec_ID__4F7CD00D" FromRole="Topic" ToRole="Lecturer" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Topic__Stu_ID__4E88ABD4" FromRole="Topic" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK__Answer__Puzzle_I__47DBAE45">
+          <End Role="Puzzle" Type="Self.Puzzle" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puzzle">
+              <PropertyRef Name="Puzzle_ID" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="Puzzle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attempt__Puzzle___4BAC3F29">
+          <End Role="Puzzle" Type="Self.Puzzle" Multiplicity="1" />
+          <End Role="Attempt" Type="Self.Attempt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puzzle">
+              <PropertyRef Name="Puzzle_ID" />
+            </Principal>
+            <Dependent Role="Attempt">
+              <PropertyRef Name="Puzzle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attempt__Stu_ID__4AB81AF0">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Attempt" Type="Self.Attempt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Stu_ID" />
+            </Principal>
+            <Dependent Role="Attempt">
+              <PropertyRef Name="Stu_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Class_Lecturer">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Lec_ID" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="Lec_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Class_ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Class_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__Lec_ID__534D60F1">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Lec_ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Lec_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__Stu_ID__52593CB8">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Stu_ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Stu_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__Topic_I__5441852A">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="Topic_ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic__Lec_ID__4F7CD00D">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Lec_ID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="Lec_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Puzzle_Lecturer">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="1" />
+          <End Role="Puzzle" Type="Self.Puzzle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Lec_ID" />
+            </Principal>
+            <Dependent Role="Puzzle">
+              <PropertyRef Name="Lec_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Puzzle__44FF419A">
+          <End Role="Puzzle" Type="Self.Puzzle" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puzzle">
+              <PropertyRef Name="Puzzle_ID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="Puzzle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic__Stu_ID__4E88ABD4">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Stu_ID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="Stu_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SEF_AssignmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="Attempts" EntityType="Self.Attempt" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Lecturers" EntityType="Self.Lecturer" />
+          <EntitySet Name="Puzzles" EntityType="Self.Puzzle" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <AssociationSet Name="FK__Answer__Puzzle_I__47DBAE45" Association="Self.FK__Answer__Puzzle_I__47DBAE45">
+            <End Role="Puzzle" EntitySet="Puzzles" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attempt__Puzzle___4BAC3F29" Association="Self.FK__Attempt__Puzzle___4BAC3F29">
+            <End Role="Puzzle" EntitySet="Puzzles" />
+            <End Role="Attempt" EntitySet="Attempts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attempt__Stu_ID__4AB81AF0" Association="Self.FK__Attempt__Stu_ID__4AB81AF0">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Attempt" EntitySet="Attempts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Class_Lecturer" Association="Self.FK_Class_Lecturer">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Class" Association="Self.FK_Student_Class">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__Lec_ID__534D60F1" Association="Self.FK__Comment__Lec_ID__534D60F1">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__Stu_ID__52593CB8" Association="Self.FK__Comment__Stu_ID__52593CB8">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__Topic_I__5441852A" Association="Self.FK__Comment__Topic_I__5441852A">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic__Lec_ID__4F7CD00D" Association="Self.FK__Topic__Lec_ID__4F7CD00D">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="Topic" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Puzzle_Lecturer" Association="Self.FK_Puzzle_Lecturer">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="Puzzle" EntitySet="Puzzles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Puzzle__44FF419A" Association="Self.FK__Question__Puzzle__44FF419A">
+            <End Role="Puzzle" EntitySet="Puzzles" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic__Stu_ID__4E88ABD4" Association="Self.FK__Topic__Stu_ID__4E88ABD4">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Topic" EntitySet="Topics" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SEF_AssignmentEntities">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="Model.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="Answer_ID" ColumnName="Answer_ID" />
+                <ScalarProperty Name="Answer_Content" ColumnName="Answer_Content" />
+                <ScalarProperty Name="Puzzle_ID" ColumnName="Puzzle_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attempts">
+            <EntityTypeMapping TypeName="Model.Attempt">
+              <MappingFragment StoreEntitySet="Attempt">
+                <ScalarProperty Name="Stu_ID" ColumnName="Stu_ID" />
+                <ScalarProperty Name="Puzzle_ID" ColumnName="Puzzle_ID" />
+                <ScalarProperty Name="Puzzle_Status" ColumnName="Puzzle_Status" />
+                <ScalarProperty Name="Attempt_Score" ColumnName="Attempt_Score" />
+                <ScalarProperty Name="DateTime_Stamp" ColumnName="DateTime_Stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="Model.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
+                <ScalarProperty Name="Class_Name" ColumnName="Class_Name" />
+                <ScalarProperty Name="Lec_ID" ColumnName="Lec_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="Model.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Stu_ID" ColumnName="Stu_ID" />
+                <ScalarProperty Name="Lec_ID" ColumnName="Lec_ID" />
+                <ScalarProperty Name="Topic_ID" ColumnName="Topic_ID" />
+                <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+                <ScalarProperty Name="Comment_Content" ColumnName="Comment_Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lecturers">
+            <EntityTypeMapping TypeName="Model.Lecturer">
+              <MappingFragment StoreEntitySet="Lecturer">
+                <ScalarProperty Name="Lec_ID" ColumnName="Lec_ID" />
+                <ScalarProperty Name="Lec_Pass" ColumnName="Lec_Pass" />
+                <ScalarProperty Name="Lec_Name" ColumnName="Lec_Name" />
+                <ScalarProperty Name="Lec_Email" ColumnName="Lec_Email" />
+                <ScalarProperty Name="Lec_PhoneNo" ColumnName="Lec_PhoneNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puzzles">
+            <EntityTypeMapping TypeName="Model.Puzzle">
+              <MappingFragment StoreEntitySet="Puzzle">
+                <ScalarProperty Name="Puzzle_ID" ColumnName="Puzzle_ID" />
+                <ScalarProperty Name="Puzzle_Name" ColumnName="Puzzle_Name" />
+                <ScalarProperty Name="Puzzle_Score" ColumnName="Puzzle_Score" />
+                <ScalarProperty Name="Hint_Score" ColumnName="Hint_Score" />
+                <ScalarProperty Name="Lec_ID" ColumnName="Lec_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="Model.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+                <ScalarProperty Name="Question_Content" ColumnName="Question_Content" />
+                <ScalarProperty Name="Puzzle_ID" ColumnName="Puzzle_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="Model.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Stu_ID" ColumnName="Stu_ID" />
+                <ScalarProperty Name="Stu_Pass" ColumnName="Stu_Pass" />
+                <ScalarProperty Name="Stu_Name" ColumnName="Stu_Name" />
+                <ScalarProperty Name="Stu_Email" ColumnName="Stu_Email" />
+                <ScalarProperty Name="Stu_PhoneNo" ColumnName="Stu_PhoneNo" />
+                <ScalarProperty Name="Stu_TotalScore" ColumnName="Stu_TotalScore" />
+                <ScalarProperty Name="Class_ID" ColumnName="Class_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="Model.Topic">
+              <MappingFragment StoreEntitySet="Topic">
+                <ScalarProperty Name="Stu_ID" ColumnName="Stu_ID" />
+                <ScalarProperty Name="Lec_ID" ColumnName="Lec_ID" />
+                <ScalarProperty Name="Topic_ID" ColumnName="Topic_ID" />
+                <ScalarProperty Name="Topic_Title" ColumnName="Topic_Title" />
+                <ScalarProperty Name="Topic_Content" ColumnName="Topic_Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,319 @@
+﻿body {
+    color: #3c4858;
+}
+
+div.row {
+    padding: 0;
+    margin: 0;
+}
+
+.ManageClassStyle {
+    background-color: #DE21B4;
+    padding-top: 2%;
+}
+
+.ManageClassStyle .header {
+    font-size: 30px;
+    color: white;
+    padding-left: 125px;
+    padding: 0px 100px;
+    
+}
+
+.ManageClassStyle .actionBtn {
+    width: 100%;
+    font-size: 25px;
+    padding: 20px 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #976DD0;
+    color: white;
+}
+
+    .ManageClassStyle .actionBtn:hover {
+        width: 100%;
+        background-color: white;
+        color: #976DD0;
+    }
+
+button.backBtn {
+    background-color: #47525E;
+    color: white;
+    font-size: 25px;
+    padding: 5px 30px;
+}
+
+button.backBtn:hover {
+    background-color: white;
+    color: #47525E;
+}
+
+button.homeBtn {
+    background-color: #47525E;
+    color: white;
+    font-size: 25px;
+    padding: 5px 30px;
+}
+
+button.homeBtn:hover {
+    background-color: white;
+    color: #47525E;
+}
+
+/********************* Register Class Form ****************************/
+
+.registerclassStyle {
+    background-color: #DE21B4;
+    padding-top: 2%;
+
+}
+
+.registerclassStyle h2 {
+    font-size: 30px;
+    color: white;
+    padding-left: 125px;
+    padding: 0px 100px;
+}
+
+.formContainer {
+    background-color: #1AD166;
+    margin-top: 70px;
+    padding: 60px 30px;
+}
+
+.textboxContainer {
+    width: 110%;
+}
+
+.formContainer label {
+    font-size: 25px;
+}
+
+.formContainer .form-control {
+    font-size: 25px;
+    padding: 20px;
+}
+
+.errorMessage {
+    font-size: 18px;
+}
+
+.registerclassStyle .registerBtn {
+    background-color: #3c4858;
+    color: white;
+    padding: 10px 40px;
+    display: block;
+    margin: 20px auto;
+}
+
+.registerclassStyle .registerBtn:hover {
+    background-color: #FFFFFF;
+    color: #3c4858;
+}
+
+/*********************Generate Attendance List***************/
+.attendancelistStyle {
+    background-color: #DE21B4;
+    padding-top: 2%;
+
+}
+
+    .attendancelistStyle h2 {
+        color: white;
+        font-size: 30px;
+        padding-left: 125px;
+        padding: 0px 100px;
+    }
+
+    .attendancelistStyle pad4 {
+        font-size: 40px;
+        padding-left: 125px;
+        padding: 0px 100px;
+    }
+.attendancelistStyle h3 {
+    color: cyan;
+    font-size: 25px;
+    font-family: Roboto;
+    font-style: italic;
+    padding-left: 125px;
+    padding: 0px 100px;
+}
+
+.attendancelistStyle.action {
+    background-color: black;
+    color:white;
+}
+
+    legend {
+        background-color: #000;
+        color: #fff;
+        padding: 3px 6px;
+    }
+
+.output {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input {
+    margin: .4rem;
+}
+
+label {
+    display: inline-block;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    width: 20%;
+}
+
+/*********************Class List***************/
+.classlistStyle {
+    background-color: #DE21B4;
+    padding-top: 2%;
+}
+div {
+    color: #DE21B4;
+}
+
+header {
+    color: white 
+    font-size: 30px;
+    padding-left: 125px;
+    padding: 0px 100px;
+}
+
+.classlistStyle h2 {
+    color: white;
+    font-size: 30px;
+    padding-left: 125px;
+    padding: 0px 100px;
+}
+
+    .classlistStyle .topContainer {
+        background-color: #EFF2F7;
+        margin-top: 70px;
+        //padding: 20px 30px;
+        height: 70px;
+        width: 960px;
+        font-family: Roboto;
+        font-style: italic;
+        z-index:4
+    }
+    .classlistStyle .formContainer {
+        background-color: #FFFFFF;
+        margin-top: 0px;
+        padding-top: -10px;
+        height: 500px;
+        width: 960px;
+        overflow: scroll;
+        line-height: 20px;
+        z-index:1
+    }
+    .classlistStyle h4 {
+        color: white;
+        font-size: 25px;
+        text-align: center;
+
+    }
+.classlistStyle .textboxContainer {
+    width: 110%;
+}
+
+    .classlistStyle .topContainer label {
+        font-size: 25px;
+    }
+
+.classlistStyle .formContainer .form-control {
+    font-size: 25px;
+    padding: 0px;
+
+}
+
+.classlistStyle .errorMessage {
+    font-size: 18px;
+}
+
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*********************Student List***************/
+
+
+.studentlistStyle {
+    background-color: #DE21B4;
+    padding-top: 2%;
+}
+div {
+    color: #DE21B4;
+}
+
+header {
+    color: white 
+           font-size: 30px;
+    padding-left: 125px;
+    padding: 0px 100px;
+}
+
+.studentlistStyle h2 {
+    color: white;
+    font-size: 30px;
+    padding-left: 125px;
+    padding: 0px 100px;
+}
+
+.studentlistStyle .topContainer {
+    background-color: #EFF2F7;
+    margin-top: 70px;
+    //padding: 20px 30px;
+    height: 70px;
+    width: 960px;
+    font-family: Roboto;
+    font-style: italic;
+    z-index: 4
+}
+.studentlistStyle .formContainer {
+    background-color: #FFFFFF;
+    margin-top: 0px;
+    padding-top: -10px;
+    height: 500px;
+    width: 960px;
+    overflow: scroll;
+    line-height: 20px;
+    z-index: 1
+}
+.studentlistStyle h4 {
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+.studentlistStyle .textboxContainer {
+    width: 110%;
+}
+
+.studentlistStyle .topContainer label {
+    font-size: 25px;
+}
+
+.studentlistStyle .formContainer .form-control {
+    font-size: 25px;
+    padding: 0px;
+}
+
+.studentlistStyle .errorMessage {
+    font-size: 18px;
+}
+
+.studentlistStyle label {
+    display: block width:100px;
+}

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "E-Learning System";
+    Layout = "_LoginLayout.cshtml";
+}
+
+<body class="loginStyle">
+    @using (Html.BeginForm())
+    {
+        <div class="row text-center">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2 class="header">Who are you?</h2>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <button class="btn identityBtn" name="identity" value="lecturer">Lecturer</button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn identityBtn" name="identity" value="student">Student</button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>

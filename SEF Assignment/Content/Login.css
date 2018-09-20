@@ -1,0 +1,154 @@
+﻿body {
+    color: #3c4858;
+}
+
+div.row {
+    padding: 0;
+    margin: 0;
+}
+
+.loginStyle {
+    background-color: rgb(19, 206, 102);
+    padding-top: 15%;
+}
+
+.loginStyle .header {
+    font-size: 60px;
+    margin-bottom: 50px;
+}
+
+.loginStyle .identityBtn {
+    width: 100%;
+    font-size: 40px;
+    padding: 20px 0; 
+    background-color: rgb(151, 109, 208);
+    color: white;
+}
+
+.loginStyle .identityBtn:hover {
+    width: 100%;
+    background-color: white;
+    color: rgb(151, 109, 208);
+}
+
+.loginStyle .backBtn , .loginFormStyle .backBtn, .registerStyle .backBtn{
+    background-color: #3c4858;
+    color: white;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 25px;
+    padding: 5px 30px;
+}
+
+.loginStyle .backBtn:hover, .loginFormStyle .backBtn:hover, .registerStyle .backBtn:hover {
+    background-color: white;
+    color: #3c4858;
+}
+
+.loginStyle .actionBtn {
+    width: 100%;
+    font-size: 40px;
+    padding: 20px 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: rgb(151, 109, 208);
+    color: white;
+}
+
+.loginStyle .actionBtn:hover {
+    width: 100%;
+    background-color: white;
+    color: rgb(151, 109, 208);
+}
+
+/********************* Login Form ****************************/ 
+
+.loginFormStyle {
+    background-color: rgb(0, 166, 255);
+}
+
+.loginFormStyle h2 {
+    font-size: 50px;
+    padding: 30px;
+}
+
+.formContainer {
+    background-color: rgb(19, 206, 102);
+    margin-top: 70px;
+    padding: 60px 30px;
+}
+
+.textboxContainer {
+    width: 100%;
+}
+
+.formContainer label {
+    font-size: 30px;
+}
+
+.formContainer .form-control {
+    font-size: 25px;
+    padding: 25px;
+}
+
+.errorMessage {
+    font-size: 18px;
+}
+
+.loginFormStyle .loginBtn {
+    background-color: #3c4858;
+    color: white;
+    padding: 10px 40px;
+    display: block;
+    margin: auto;
+}
+
+.loginFormStyle .actionBtn {
+    width: 100%;
+    font-size: 40px;
+    padding: 20px 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: rgb(151, 109, 208);
+    color: white;
+}
+
+/******* Registration **********************/
+.registerStyle {
+    background-color: rgb(19, 206, 102);
+}
+
+.registerStyle h2 {
+    font-size: 50px;
+    padding: 30px;
+}
+
+.registerContainer label {
+    font-size: 25px;
+    margin: 15px;
+}
+
+.registerContainer .form-control {
+    width: 50%;
+    padding: 20px;
+    font-size: 22px;
+    margin: 15px;
+}
+
+.registerStyle .submitBtn {
+    background-color: #3c4858;
+    color: white;
+    padding: 10px 40px;
+    display: block;
+    margin: 20px auto;
+}
+
+.registerStyle .submitBtn:hover {
+    background-color: white;
+    color: #3c4858;
+}
+
+.registerContainer .error {
+    padding-left: 30px;
+}

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "E-Learning System";
+    Layout = "_LoginLayout.cshtml";
+}
+
+<body class="loginStyle">
+    <input type="button" class="btn backBtn" value="Back" onclick="@("window.location.href='" + @Url.Action("ChooseIdentity", "Login") + "'") ;">
+
+    @using (Html.BeginForm())
+    {
+        <div class="row text-center">
+            <div class="col-xs-2 col-md-4"></div>
+            <div class="col-xs-8 col-md-4">
+                <button class="btn actionBtn" name="action" value="login">Login</button>
+            </div>
+            <div class="col-xs-2 col-md-4"></div>
+        </div>
+        <div class="row text-center">
+            <div class="col-xs-2 col-md-4"></div>
+            <div class="col-xs-8 col-md-4">
+                <button class="btn actionBtn" name="action" value="register">Register</button>
+            </div>
+            <div class="col-xs-2 col-md-4"></div>
+        </div>
+
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+

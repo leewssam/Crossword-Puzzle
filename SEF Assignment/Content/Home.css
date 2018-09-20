@@ -1,0 +1,130 @@
+﻿h2 {
+    font-size: 50px;
+    padding: 30px;
+}
+
+div.row {
+    padding: 0;
+    margin: 0;
+}
+
+input.backBtn {
+    background-color: #3c4858;
+    color: white;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 25px;
+    padding: 5px 30px;
+}
+
+input.backBtn:hover {
+    background-color: white;
+    color: #3c4858;
+}
+
+.homePage, .homeStuPage {
+    background-color: #976dd0;
+    color: #3c4858;
+}
+
+.homeBtnContainer {
+    margin-top: 50px;
+}
+
+.homePage .row, .homeStuPage .row {
+    text-align: center;
+    color: white;
+}
+
+.homePage .managePuzzleBtn {
+    background-color: #F95F62;
+    width: 380px;
+    height: 200px;
+    font-size: 40px;
+    padding: 30px;
+}
+
+.homePage .rankingBoardBtn {
+    background-color: #FF9052;
+    width: 380px;
+    height: 200px;
+    font-size: 40px;
+    padding: 30px;
+}
+
+.homePage .discussionBoardBtn {
+    background-color: #00A6FF;
+    width: 380px;
+    height: 200px;
+    font-size: 40px;
+    padding: 30px;
+}
+
+.homePage .manageClassBtn {
+    background-color: #f911cf;
+    width: 380px;
+    height: 200px;
+    font-size: 40px;
+    padding: 30px;
+}
+
+.homePage .managePuzzleBtn:hover {
+    color: #F95F62;
+    background-color: white;
+}
+
+.homePage .rankingBoardBtn:hover {
+    color: #FF9052;
+    background-color: white;
+}
+
+.homePage .discussionBoardBtn:hover {
+    color: #00A6FF;
+    background-color: white;
+}
+
+.homePage .manageClassBtn:hover {
+    color: #f911cf;
+    background-color: white;
+}
+
+/************************** Home Stu *****************/
+.homeStuPage .puzzleBtn {
+    background-color: #F95F62;
+    width: 500px;
+    height: 150px;
+    font-size: 40px;
+    padding: 30px;
+}
+
+.homeStuPage .rankingBoardBtn {
+    background-color: #FF9052;
+    width: 500px;
+    height: 150px;
+    font-size: 40px;
+    padding: 30px;
+}
+
+.homeStuPage .discussionBoardBtn {
+    background-color: #00A6FF;
+    width: 500px;
+    height: 150px;
+    font-size: 40px;
+    padding: 30px;
+}
+
+.homeStuPage .puzzleBtn:hover {
+    color: #F95F62;
+    background-color: white;
+}
+
+.homeStuPage .rankingBoardBtn:hover {
+    color: #FF9052;
+    background-color: white;
+}
+
+.homeStuPage .discussionBoardBtn:hover {
+    color: #00A6FF;
+    background-color: white;
+}

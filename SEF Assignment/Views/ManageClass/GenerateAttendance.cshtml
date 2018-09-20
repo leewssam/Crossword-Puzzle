@@ -1,0 +1,66 @@
+﻿@using SEF_Assignment.ViewModel
+@model SEF_Assignment.ViewModel.GenerateAttendance
+
+
+@{
+    ViewBag.Title = "GenerateAttendance";
+    Layout = "_ManageClassLayout.cshtml";
+}
+
+<body class="attendancelistStyle">
+
+<div>
+@Html.BeginForm()
+{
+    <div class="row text-left">
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
+            <h2 class="header">Attendance List</h2>
+        </div>
+
+        <div class="col-md-1">
+            <button class="btn homeBtn" name="action" value="home">Home</button>
+        </div>
+        <div class="col-md-1">
+            <button class="btn backBtn" name="action" value="back">Back</button>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <br/>
+    <br/>
+    <br /><br /><br /><br />
+
+    <div class="row text-center">
+        <div class="col-md-1"></div>
+        <h3 class="header">Date of Submission</h3>
+    </div>
+
+    <fieldset>
+        <br/>
+        <br/>
+        
+        <div class="row text-left">
+
+            <label for="start">Submission Starting Date: </label>
+            <font color="black"> @Html.EditorFor(model => model.StartingDate, new { @type = "date" })</font>
+            <div class="col-xs-2 col-md-4"></div>
+            <br/>
+
+            <label for="end">Submission Ending Date: </label>
+            <font color="black"> @Html.EditorFor(model => model.EndingDate, new { @type = "date" })</font>
+            <div class="col-xs-2 col-md-4"></div>
+        </div>
+    </fieldset>
+    <br/><br />
+    <div class="row text-center">
+    <div class="col-xs-2 col-md-4"></div>
+    <div class="col-xs-8 col-md-4">
+        <font color="black">   
+
+            <button class="btn backBtn" name="action" value="confirmdate">Confirm Date</button></font>
+        </div>
+        <div class="col-xs-2 col-md-4"></div>
+    </div>
+    }
+

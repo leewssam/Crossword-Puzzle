@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "_HomeLayout.cshtml";
+}
+
+<body>
+    <h2>Home</h2>
+    @using (Html.BeginForm())
+    {
+        <button class="btn backBtn" name="action" value="back">Back</button>
+
+        <button class="btn homeBtn" name="action" value="managePuzzle">Manage Puzzle</button>
+        <button class="btn homeBtn" name="action" value="rankingBoard">Ranking Board</button>
+        <button class="btn homeBtn" name="action" value="discussionBoard">Discussion Board</button>
+        <button class="btn homeBtn" name="action" value="manageClasss">Manage Class</button>
+    }
+
+</body>

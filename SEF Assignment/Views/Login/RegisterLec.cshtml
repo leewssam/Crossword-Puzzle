@@ -1,0 +1,117 @@
+﻿@model SEF_Assignment.ViewModel.RegisterLec
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "_LoginLayout.cshtml";
+}
+
+<body class="registerStyle">
+    <h2>Registration (Lecturer)</h2>
+    <input type="button" class="btn backBtn" value="Back" onclick="@("window.location.href='" + @Url.Action("ChooseAction", "Login") + "'") ;">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal registerContainer">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Lec_ID, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.Lec_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", autocomplete = "off" } })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        @Html.ValidationMessageFor(model => model.Lec_ID, "", new { @class = "text-danger col-md-6 error" })
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Lec_Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.Lec_Name, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        @Html.ValidationMessageFor(model => model.Lec_Name, "", new { @class = "text-danger col-md-6 error" })
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Lec_Pass, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.Lec_Pass, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", type = "password" } })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        @Html.ValidationMessageFor(model => model.Lec_Pass, "", new { @class = "text-danger col-md-6 error" })
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Lec_Pass_Confirm, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.Lec_Pass_Confirm, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", type = "password" } })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        @Html.ValidationMessageFor(model => model.Lec_Pass_Confirm, "", new { @class = "text-danger col-md-6 error" })
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Lec_Email, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.Lec_Email, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        @Html.ValidationMessageFor(model => model.Lec_Email, "", new { @class = "text-danger col-md-6 error" })
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Lec_PhoneNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.Lec_PhoneNo, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        @Html.ValidationMessageFor(model => model.Lec_PhoneNo, "", new { @class = "text-danger col-md-6 error" })
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <input type="submit" value="Register" class="btn btn-lg submitBtn" />
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+     }
+
+</body>

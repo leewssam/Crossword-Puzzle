@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/HomeLec/_HomeLayout.cshtml";
+}
+
+<body class="homeStuPage">
+    <h2>Home</h2>
+
+    <input type="button" class="btn backBtn" value="Log Out" onclick="@("window.location.href='" + @Url.Action("ChooseIdentity", "Login") + "'") ;">
+
+    <div class="homeBtnContainer">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <button class="btn puzzleBtn" onclick="@("window.location.href='" + @Url.Action("puzzleStu", "HomeStu") + "'") ;">Puzzle</button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <button class="btn rankingBoardBtn" onclick="@("window.location.href='" + @Url.Action("RankingBoardStu", "HomeStu") + "'") ;">Ranking Board</button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <button class="btn discussionBoardBtn" onclick="@("window.location.href='" + @Url.Action("DiscussionBoardStu", "HomeStu") + "'") ;">Discussion Board</button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</body>

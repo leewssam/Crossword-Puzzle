@@ -1,0 +1,95 @@
+﻿@using SEF_Assignment.Models
+@using SEF_Assignment.ViewModel
+@model SEF_Assignment.ViewModel.PuzzlesList
+
+
+
+@{
+    ViewBag.Title = "PuzzleList";
+    Layout = "_ManageClassLayout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<body class="studentlistStyle">
+
+    <div>
+
+        @Html.BeginForm()) {
+        <div class="row text-left">
+            <div class="col-md-1"></div>
+            <div class="col-md-8">
+                <h2 class="header">Puzzle List</h2>
+            </div>
+            <div class="col-md-1">
+                <button class="btn backBtn" name="action" value="home">Home</button>
+            </div>
+            <div class="col-md-1">
+                <button class="btn backBtn" name="action" value="back">Back</button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        }
+
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-xs-1 col-lg-3"></div>
+            <div class="col-xs-10 col-lg-6 topContainer form-inline">
+                <div class="row">
+                    <div class="col-md-1">
+                        <h3 class="header"><font color="black">#</font></h3>
+                    </div>
+                    <div class="col-md-3">
+                        <h3 class="header"><font color="black">Puzzle Name</font></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-1 col-lg-3"></div>
+            <div class="col-xs-10 col-lg-6 formContainer">
+                @{
+                    int counter = (Model.ViewPuzzleList.Count + 1);
+                }
+
+                @for (var i = 1; i < (counter); i++)
+                {
+                    <hr />
+                    <div class="row">
+
+                        <div class="col-md-1">
+                            <h3 class="header"><font color="black">@i</font></h3>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="header"><font color="black">@Model.ViewPuzzleList[i - 1].PuzzleName</font></h3>
+                        </div>
+                        <div class="col-md-1">
+                            <h3 class="header"><font color="black">@Html.CheckBoxFor(m => Model.ViewPuzzleList[i - 1].IsCheck)</font>
+                            @Html.HiddenFor(m => Model.ViewPuzzleList[i - 1].PuzzleName)
+                            @Html.HiddenFor(m => Model.ViewPuzzleList[i - 1].PuzzleID)
+
+                           </h3>
+                        </div>
+                        
+                    </div>
+                    <br />
+                }
+            </div>
+        </div>
+
+
+
+        <br />
+
+        <div class="row text-left">
+            <div class="col-md-7"></div>
+
+            <div class="col-md-3">
+                <button class="btn backBtn" name="action" value="genattendane">Generate Attendance</button>
+            </div>
+        </div>
+
+
+    </div>

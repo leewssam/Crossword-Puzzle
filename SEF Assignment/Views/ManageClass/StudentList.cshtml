@@ -1,0 +1,84 @@
+﻿@using SEF_Assignment.Models
+@using SEF_Assignment.ViewModel
+@model SEF_Assignment.ViewModel.StudentList
+
+
+
+@{
+    ViewBag.Title = "StudentList";
+    Layout = "_ManageClassLayout.cshtml";
+}
+
+<body class="classlistStyle">
+
+<div>
+@Html.BeginForm()) { 
+<div class="row text-left">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+        <h2 class="header">Student List</h2>
+    </div>
+    <div class="col-md-1">
+        <button class="btn backBtn" name="action" value="home">Home</button>
+    </div>
+    <div class="col-md-1">
+        <button class="btn backBtn" name="action" value="back">Back</button>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+}
+
+@Html.AntiForgeryToken()
+
+<div class="row">
+    <div class="col-xs-1 col-lg-3"></div>
+    <div class="col-xs-10 col-lg-6 topContainer form-inline">
+        <div class="row">
+            <div class="col-md-1">
+                <h3 class="header" ><font color ="black">#</font></h3>
+            </div>
+            <div class="col-md-3">
+                <h3 class="header"><font color="black">Student ID</font></h3>
+            </div>
+
+            <div class="col-md-4">
+                <h3 class="header"><font color="black">Student Name</font></h3>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-1 col-lg-3"></div>
+    <div class="col-xs-10 col-lg-6 formContainer">
+        @{
+            int counter = (Model.StudentIDList.Count + 1);
+        }
+
+        @for (var i = 1; i < (counter); i++)
+        {
+            <hr />
+            <div class="row">
+
+                <div class="col-md-1">
+                    <h3 class="header"><font color="black">@i</font></h3>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="header"><font color="black">@Model.StudentIDList[i - 1]</font></h3>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="header"><font color="black">@Model.StudentNameList[i - 1]</font></h3>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<br />
+
+<div class="row text-left">
+    <div class="col-md-8"></div>
+    <div class="col-md-1">
+        <button class="btn backBtn" name="action" value="download">Download</button>
+    </div>
+</div>
