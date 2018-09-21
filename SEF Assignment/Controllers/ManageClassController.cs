@@ -267,7 +267,7 @@ namespace SEF_Assignment.Controllers
                 if (counter > 1)
                 {
                     TempData["AlertMessage"] = "Please only insert one boxes! Returning to main menu.";
-                    return RedirectToAction("HomeLec", "HomeLec");
+                    return RedirectToAction("ManageClass");
                 }
 
                 TempData["Class"] = content;
@@ -458,7 +458,7 @@ namespace SEF_Assignment.Controllers
                 if (counter > 1)
                 {
                     TempData["AlertMessage"] = "Please only insert one boxes! Returning to main menu.";
-                    return RedirectToAction("HomeLec", "HomeLec");
+                    return RedirectToAction("ManageClass");
                 }
 
                 TempData["Puzzle"] = content;
