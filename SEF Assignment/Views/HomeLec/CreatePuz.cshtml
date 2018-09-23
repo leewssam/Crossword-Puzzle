@@ -1,0 +1,107 @@
+﻿@using SEF_Assignment.Models
+@using SEF_Assignment.ViewModel
+@model SEF_Assignment.ViewModel.CreatePuz
+
+
+
+@{
+    ViewBag.Title = "Create Puzzle";
+    Layout = "~/Views/ManageClass/_ManageClassLayout.cshtml";
+}
+
+<body class="registerclassStyle">
+    
+<style>
+    .field-validation-error {
+        color: #FFFF00;
+    }
+</style>
+<div>
+    @Html.BeginForm()
+    {
+    <div class="row text-left">
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
+            <h2 class="header">Create Puzzle</h2>
+        </div>
+        <div class="col-md-1">
+            <button class="btn backBtn" name="action" value="home">Home</button>
+        </div>
+        <div class="col-md-1">
+            <button class="btn backBtn" name="action" value="back">Back</button>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+
+
+    @Html.AntiForgeryToken()
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-3">
+        <h3 class="header"><font color="black" size="3"><b>Puzzle Name: </b></font></h3>
+        <font color="black" size="3"> @Html.EditorFor(model => model.PuzzleName)</font>
+        <br/>
+      @Html.ValidationMessageFor(model => model.PuzzleName, "", new { @class = "text-danger col-md-6 error" })
+
+    </div>
+    
+
+    <div class="col-md-3">
+        <h3 class="header"><font color="black" size="3"><b>Puzzle Score: </b></font></h3>
+        <font color="black" size="3">@Html.EditorFor(model => model.PuzzleScore)</font>
+        <br/>
+        @Html.ValidationMessageFor(model => model.PuzzleScore, "", new { @class = "text-danger col-md-6 error"})
+    </div>
+    <div class="col-md-3">
+        <h3 class="header"><font color="black" size="3"><b>Puzzle Hint: </b></font></h3>
+        <font color="black" size="3">@Html.EditorFor(model => model.PuzzleHint)</font>
+        <br/>
+        @Html.ValidationMessageFor(model => model.PuzzleHint, "", new { @class = "text-danger col-md-6 error"})
+
+    </div>
+</div>
+</br>
+</br>
+<div class="row">
+
+    <div class="col-md-6">
+        <h2 class="header"><font color="black" size="3"><b>Insert the puzzle answer (word), after each line please make it to the next line: </b></font></h2>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-6">
+    @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger col-md-6 error" })
+    <br/>
+    <font color="black" size="3">@Html.TextAreaFor(model => model.Answer, 7, 200, null)</font>
+
+</div>
+<br />
+<div class="row">
+    <div class="col-md-5"></div>
+
+    <div class="col-md-7">
+        <h2 class="header"><font color="black" size="3"><b>Insert the puzzle hint (to be display to students), after each line please make it to the next line: </b></font></h2>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-6">
+    @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger col-md-6 error" })
+    <br/>
+    <font color="black" size="3">@Html.TextAreaFor(model => model.Question, 7, 200, null)</font>
+
+
+</div>
+    
+<div class="row">
+    <div class="col-md-10"></div>
+    <div class="col-md-1">
+        <br/>
+
+        <button class="btn backBtn" name="action" value="create">Create Puzzle</button>
+    </div>
+    
+</div>

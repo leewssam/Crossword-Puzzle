@@ -215,6 +215,7 @@
     <Compile Include="ViewModel\AttendanceList.cs" />
     <Compile Include="ViewModel\ClassList.cs" />
     <Compile Include="ViewModel\ConfirmRemoval.cs" />
+    <Compile Include="ViewModel\CreatePuz.cs" />
     <Compile Include="ViewModel\CreateRanking.cs" />
     <Compile Include="ViewModel\GenerateAttendance.cs" />
     <Compile Include="ViewModel\Login.cs" />
@@ -356,6 +357,9 @@
     <Content Include="Views\ManageClass\PuzzleList.cshtml" />
     <Content Include="Views\ManageClass\AttendanceList.cshtml" />
     <Content Include="Views\ManageClass\CreateRanking.cshtml" />
+    <Content Include="Views\HomeLec\CreatePuz.cshtml" />
+    <Content Include="Views\HomeLec\RemovePuz.cshtml" />
+    <Content Include="Views\HomeLec\ConfirmRemove.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

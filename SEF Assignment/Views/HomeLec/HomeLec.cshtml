@@ -1,4 +1,16 @@
-﻿@{ 
+﻿
+@{
+    var message = TempData["AlertMessage"] ?? string.Empty;
+}
+
+<script type="text/javascript">
+    var message = '@message';
+    if(message)
+        alert(message);
+</script>
+
+
+@{ 
     ViewBag.Title = "Home";
     Layout = "_HomeLayout.cshtml";
 }

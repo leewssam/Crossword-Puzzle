@@ -166,7 +166,7 @@ namespace SEF_Assignment.Controllers
             Session["ClassID"] = Session["ClassID"];
             Session["LecID"] = Session["LecID"];
             Session["PuzzleID"] = Session["PuzzleID"];
-
+            return Content("Play");
         }
 
         [HttpGet]

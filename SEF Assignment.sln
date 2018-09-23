@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEF Assignment", "SEF Assignment\SEF Assignment.csproj", "{B1138DC8-AA41-431C-B255-FB9DC6F5EA5F}"
 EndProject
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E97DB8AB-384F-49E4-8658-140A86DDCA18}
+		SolutionGuid = {C1158FDC-BE3C-4222-A91B-5D1AEA94DBBA}
 	EndGlobalSection
 EndGlobal

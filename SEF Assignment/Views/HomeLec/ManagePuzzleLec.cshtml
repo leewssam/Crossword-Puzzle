@@ -1,6 +1,60 @@
 ﻿@{
     ViewBag.Title = "Manage Puzzle";
-    Layout = "_HomeLayout.cshtml";
+    Layout = "~/Views/ManageClass/_ManageClassLayout.cshtml";
 }
 
-<h2>Manage puzzle</h2>
+<body class="ManageClassStyle">
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="row text-left">
+            <div class="col-md-1"></div>
+            <div class="col-md-8">
+                <h2 class="header">Manage Puzzle</h2>
+            </div>
+         
+            <div class="col-md-1">
+                <button class="btn homeBtn" name="action" value="home">Home</button>
+            </div>
+            <div class="col-md-1">
+                <button class="btn backBtn" name="action" value="back">Back</button>
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <br/>
+        <br />
+        <br/>
+        <br />
+        <br />
+        <div class="row text-center">
+            <div class="col-xs-2 col-md-4"></div>
+            <div class="col-xs-8 col-md-4">
+                <button class="btn actionBtn" name="action" value="create">Create Puzzle</button>
+            </div>
+            <div class="col-xs-2 col-md-4"></div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-xs-2 col-md-4"></div>
+            <div class="col-xs-8 col-md-4">
+                <button class="btn actionBtn" name="action" value="remove">Remove Puzzle</button>
+            </div>
+            <div class="col-xs-2 col-md-4"></div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-xs-2 col-md-4"></div>
+            <div class="col-xs-8 col-md-4">
+                <button class="btn actionBtn" name="action" value="view">View All Puzzle</button>
+            </div>
+            <div class="col-xs-2 col-md-4"></div>
+        </div>
+        
+
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
