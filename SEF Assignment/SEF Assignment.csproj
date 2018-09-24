@@ -162,8 +162,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DiscussionBoardLecController.cs" />
+    <Compile Include="Models\DiscussionBoardLecController.cs" />
     <Compile Include="Controllers\DiscussionBoardStuController.cs" />
+    <Compile Include="Controllers\GeneratePuzzleController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeLecController.cs" />
     <Compile Include="Controllers\HomeStuController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -177,15 +179,21 @@
     <Compile Include="Models\Attempt.cs">
       <DependentUpon>SEFAssignmentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Canvas.cs" />
+    <Compile Include="Models\CanvasCharacter.cs" />
     <Compile Include="Models\Class.cs">
       <DependentUpon>SEFAssignmentModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comment.cs">
       <DependentUpon>SEFAssignmentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CrosswordFactory.cs" />
+    <Compile Include="Models\HtmlCanvasWriter.cs" />
+    <Compile Include="Models\ICanvasWriter.cs" />
     <Compile Include="Models\Lecturer.cs">
       <DependentUpon>SEFAssignmentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Orientation.cs" />
     <Compile Include="Models\Puzzle.cs">
       <DependentUpon>SEFAssignmentModel.tt</DependentUpon>
     </Compile>
@@ -213,6 +221,8 @@
     <Compile Include="Models\Topic.cs">
       <DependentUpon>SEFAssignmentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Word.cs" />
+    <Compile Include="Models\WordIntersection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AttendanceList.cs" />
     <Compile Include="ViewModel\ClassList.cs" />
@@ -374,6 +384,8 @@
     <Content Include="Views\DiscussionBoardStu\ViewAllTopicsStu.cshtml" />
     <Content Include="Views\DiscussionBoardStu\ViewThisTopicStu.cshtml" />
     <Content Include="Views\DiscussionBoard\_DissLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\GeneratePuzzle\Generate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

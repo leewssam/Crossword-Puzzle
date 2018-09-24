@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Crossword";
+}
+
+<h2>Crossword</h2>
+    @using (Html.BeginForm("Generate", "GeneratePuzzle", FormMethod.Post))
+    {
+        <text>Number of columns: </text><input type="text" name="width" value="@ViewData["Width"]" /><br /><br />
+        <text>Number of lines: </text><input type="text" name="height" value="@ViewData["Height"]" /><br />
+        <text><small><b>PS.:</b> Words with more characters than the number of rows or columns and words with less than 3 characters will be removed</small></text><br /><br />
+        <text>Put the words, one per line, in the text box below: </text><br />
+        <textarea name="words" style="width: 500px; height:150px;">
+            @if (ViewData.ContainsKey("Words"))
+            {
+                @ViewData["Words"]
+            } 
+        </textarea><br />
+        <input type="submit" value="Submit" />
+    }
+
+
+   

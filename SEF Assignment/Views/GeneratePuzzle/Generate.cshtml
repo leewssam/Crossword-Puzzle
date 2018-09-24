@@ -1,0 +1,81 @@
+﻿@using SEF_Assignment.ViewModel
+@model SEF_Assignment.ViewModel.PlayPuzzle
+<pages validateRequest="false" />
+@{
+    ViewBag.Title = "Play Puzzle";
+    Layout = "~/Views/DiscussionBoard/_DissLayout.cshtml";
+}
+<style>
+    .dissBoard {
+        background-color: #FF4A4A;
+    }                         
+</style>
+<body class="dissBoard">
+        <h2 class="header">Play Puzzle</h2>
+        <input type="button" class="btn homeBtn" value="Home" onclick="@("window.location.href='" + @Url.Action("HomeStu", "HomeStu") + "'") ;">
+        <input type="button" class="btn backBtn" value="Back" onclick="@("window.location.href='" + @Url.Action("puzzleStu", "HomeStu") + "'") ;" />
+
+<div>
+    <div class="col-md-4"></div>
+    <b><h3 class="header"><font color="black" size="2"><b>Lecturer given hint:</b></font></h3></b>
+    <br/>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <font color="black">
+            @{
+                int counter = (Model.QuestionList.Count + 1);
+            }
+        </font>
+        @for (var i = 1; i < (counter); i++)
+        {
+            <b><font color="black">@i.</font></b>
+            <font color="black">@Model.QuestionList[i - 1]</font>
+            <br />
+
+        }
+    </div>
+</div>
+<br/>
+<br/>
+    @if (ViewData["CanvasWriter"] != null && ViewData["Canvas"] != null)
+    {
+        <div class="col-md-1"></div>
+        <div style="margin:50px;margin-left:500px;position:relative;">
+            @{
+                var thisPuzzle = ViewData["CanvasWriter"] as trycross.Model.ICanvasWriter;
+
+                @Html.Raw(thisPuzzle.write((ViewData["Canvas"]) as trycross.Model.Canvas))
+
+                var count = thisPuzzle.getCount();
+            }
+        </div>
+        <div class="col-md-7">
+            <input type="button" class="btn backBtn" value="Submit Quiz" onclick="save(@count)"/>
+        </div>
+
+    }
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<script type="text/javascript">
+        function save(count) {
+            var attempt = [];
+            var ans = [];
+
+            for (var i = 0; i < count - 1; i++) {
+                if (document.getElementById(i + 1) != null) {
+                    var value = document.getElementById(i + 1).innerHTML;
+                    var realAns = document.getElementById(i + 1).className;
+                    attempt[i] = value;
+                    ans[i] = realAns;
+
+                }
+                window.location.href = "/GeneratePuzzle/Check?a=" + attempt + "&b=" + ans;
+            }
+
+        }
+        
+    </script>
