@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SEF_Assignment.Models.Topic>
+
+@{
+    ViewBag.Title = "ViewAllTopics";
+    Layout = "~/Views/DiscussionBoard/_DissLayout.cshtml";
+}
+
+<body class="dissBoard">
+    <h2>View All Topics</h2>
+    <input type="button" class="btn homeBtn" value="Home" onclick="@("window.location.href='" + @Url.Action("HomeStu", "HomeStu") + "'") ;">
+    <input type="button" class="btn backBtn" value="Back" onclick="@("window.location.href='" + @Url.Action("IndexStu", "DiscussionBoardStu") + "'") ;">
+
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <input type="text" class="form-control searchInput col-md-10" name="search" />
+                <input type="submit" class="col-md-2 btn searchBtn" name="search" value="Search" />
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="topicsContainer">
+            @if (Model.Count() != 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                            <input type="button" value="@item.Topic_Title" class="btn col-md-8 eachTopicBtn" onclick="@("window.location.href='" + @Url.Action("ViewThisTopicStu", "DiscussionBoardStu", new { t = item.Topic_ID }) + "'") ;" />
+                        <div class="col-md-2"></div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-2"></div>
+                        <p class="noSearchMatch">No result...</p>
+                    <div class="col-md-2"></div>
+                </div>
+            }
+        </div> 
+    }
+</body>

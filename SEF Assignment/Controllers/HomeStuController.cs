@@ -159,14 +159,66 @@ namespace SEF_Assignment.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult PlayPuzzle()
         {
             Session["StuID"] = Session["StuID"];
             Session["ClassID"] = Session["ClassID"];
             Session["LecID"] = Session["LecID"];
             Session["PuzzleID"] = Session["PuzzleID"];
-            return Content("Play");
+
+            string PuzzleID = Session["PuzzleID"].ToString();
+            List<String> AnswerList = new List<String>();
+            List<String> QuestionList = new List<String>();
+
+
+            string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
+            sqlConnection.Open();
+
+            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Answer_Content FROM [SEF_AssignmentEntities].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID + "'");
+            sqlCommand.Connection = sqlConnection;
+
+            SqlDataReader myreader = sqlCommand.ExecuteReader();
+            while (myreader.Read())
+            {
+                AnswerList.Add(myreader[0].ToString().ToUpper());
+            }
+
+            myreader.Close();
+            int sumofquestion = AnswerList.Count;
+
+
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Question_Content FROM [SEF_AssignmentEntities].[dbo].[Question] WHERE Puzzle_ID='" + PuzzleID + "'");
+            sqlCommand.Connection = sqlConnection;
+            SqlDataReader newreader = sqlCommand.ExecuteReader();
+
+            while (newreader.Read())
+            {
+                QuestionList.Add(newreader[0].ToString().ToUpper());
+            }
+
+            String.Join(String.Empty, AnswerList.ToArray());
+
+            newreader.Close();
+            char[] carray = string.Join(string.Empty, AnswerList).ToCharArray();
+
+            char[] random = carray;
+
+            Array.Sort(random);
+
+            string resultString = String.Join(" ", random);
+
+           // String stringa = new String(resultString);
+
+            var model = new PlayPuzzle
+            {
+                QuestionList = QuestionList,
+                InputAnswer = "",
+                Hintting = resultString,
+                QuestionSum = sumofquestion
+            };
+            return View(model);
         }
 
         [HttpGet]
@@ -257,9 +309,9 @@ namespace SEF_Assignment.Controllers
         }
 
         public ActionResult DiscussionBoardStu()
-        { 
+        {
 
-            return View();
+            return RedirectToAction("IndexStu", "DiscussionBoardStu");
         }
     }
 }

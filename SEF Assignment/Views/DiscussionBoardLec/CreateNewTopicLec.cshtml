@@ -1,0 +1,43 @@
+﻿@model SEF_Assignment.Models.Topic
+
+@{ 
+    ViewBag.Title = "Create New Topic";
+    Layout = "~/Views/DiscussionBoard/_DissLayout.cshtml";
+}
+
+<body class="dissBoard">
+
+    <h2>Create New Topic</h2>
+    <input type="button" class="btn homeBtn" value="Home" onclick="@("window.location.href='" + @Url.Action("HomeLec", "HomeLec") + "'") ;">
+    <input type="button" class="btn backBtn" value="Back" onclick="@("window.location.href='" + @Url.Action("IndexLec", "DiscussionBoardLec") + "'") ;" />
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal formContainer">
+            <div class="row">
+                @Html.LabelFor(model => model.Topic_Title, "Topic Title", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Topic_Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Topic_Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Topic_Content, "Topic Content", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.TextAreaFor(model => model.Topic_Content, 8, 10, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Topic_Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    <input type="submit" value="Create" class="btn createBtn" />
+                </div>
+            </div>
+        </div>
+    }
+</body>

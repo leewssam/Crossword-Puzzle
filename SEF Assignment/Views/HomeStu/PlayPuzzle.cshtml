@@ -1,0 +1,84 @@
+﻿
+@using SEF_Assignment.Models
+@using SEF_Assignment.ViewModel
+@model SEF_Assignment.ViewModel.PlayPuzzle
+
+@{
+    ViewBag.Title = "Play Puzzle";
+    Layout = "~/Views/ManageClass/_ManageClassLayout.cshtml";
+
+}
+
+<body class="studentlistStyle">
+
+<style>
+
+</style>
+
+<div>
+    @Html.BeginForm()) {
+    <div class="row text-left">
+        <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-8">
+        <h2 class="header">Manage Puzzle</h2>
+    </div>
+    <div class="col-md-1">
+    <button class="btn homeBtn" name="action" value="home">Home</button>
+    </div>
+    <div class="col-md-1">
+    <button class="btn backBtn" name="action" value="back">Back</button>
+
+    </div>
+    <div class="col-md-2"></div>
+    </div>
+
+</div>
+
+<br/><br />
+    <br />
+    
+<div class="row">
+    <br/>
+    <div class="col-md-6">
+    </div>
+</div>
+<div class="row-md-1">
+    
+    <div align="center">
+        <div class="row-md-1">
+            <h3 class="header"><font color="black" size="2"><b> Sum of question in this puzzle:</b></font></h3>
+            <font color="black">
+                @Html.EditorFor(model => model.QuestionSum, new { htmlAttributes = new { @readonly = "readonly", autocomplete = "off" } })</font>
+            <h3 class="header"><font color="black" size="2"><b> You may use the following character to use as hint:</b></font></h3>
+</div>
+    </div>
+</div>
+</div>
+
+       @Html.EditorFor(model => model.Hintting, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", autocomplete = "off" } })
+<div align ="center">
+        <h3 class="header"><font color="black" size="2"><b>Lecturer given question:</b></font></h3>
+        <font color="black">
+            @Html.EditorFor(model => model.QuestionList, new { htmlAttributes = new { @readonly = "readonly", autocomplete = "off" } })
+        </font>
+        <br />
+</div>
+
+
+
+<div class="row">
+   
+    <div class="col-md-6">
+        <h2 class="header"><font color="black" size="3"><b>Insert the puzzle answer (word), after each line please make it to the next line: </b></font></h2>
+    </div>
+</div>
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+        @Html.ValidationMessageFor(model => model.InputAnswer, "", new { @class = "text-danger col-md-6 error" })
+        <br />
+        <font color="black" size="3">@Html.TextAreaFor(model => model.InputAnswer, 7, 200, null)</font>
+
+    </div>
+</div>
+

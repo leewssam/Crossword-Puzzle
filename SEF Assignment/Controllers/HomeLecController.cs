@@ -21,13 +21,15 @@ namespace SEF_Assignment.Controllers
 
         public ActionResult HomeLec()
         {
-            
             return View();
         }
         
         [HttpGet]
         public ActionResult ManagePuzzleLec()
-        { 
+        {
+            Session["LecID"] = Session["LecID"];
+
+
             return View();
         }
 
@@ -35,7 +37,18 @@ namespace SEF_Assignment.Controllers
         public ActionResult ManagePuzzleLec(string action)
         {
             Session["LecID"] = Session["LecID"];
-            if (action.Equals("create"))
+
+            if (action.Equals("home"))
+            {
+                return RedirectToAction("HomeLec", "HomeLec");
+            }
+
+            else if (action.Equals("back"))
+            {
+                return RedirectToAction("HomeLec", "HomeLec");
+            }
+
+            else if(action.Equals("create"))
             {
                 return RedirectToAction("CreatePuz");
             }
@@ -267,10 +280,8 @@ namespace SEF_Assignment.Controllers
                     String QuestionID;
 
 
-                    string connectionString =
-                        @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-                    System.Data.SqlClient.SqlConnection sqlConnection =
-                        new System.Data.SqlClient.SqlConnection(connectionString);
+                    string connectionString =@"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                    System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
                     sqlConnection.Open();
 
@@ -279,7 +290,7 @@ namespace SEF_Assignment.Controllers
                     int count = Convert.ToInt32(sqlCommand.ExecuteScalar()) + 1;
                     String PuzzleID = "PZ" + count.ToString("000");
 
-                   sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEF_AssignmentEntities].[dbo].[Puzzle] (\"Puzzle_ID\", \"Puzzle_Name\", Puzzle_Score, Hint_Score,\"LEC_ID\") VALUES('" +PuzzleID + "','" + PuzzleName + "'," + PuzzleScore + "," + PuzzleHint + ",'" + LecID +"')");
+                    sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEF_AssignmentEntities].[dbo].[Puzzle] (\"Puzzle_ID\", \"Puzzle_Name\", Puzzle_Score, Hint_Score,\"LEC_ID\") VALUES('" +PuzzleID + "','" + PuzzleName + "'," + PuzzleScore + "," + PuzzleHint + ",'" + LecID +"')");
                     //return Content("INSERT INTO [SEF_AssignmentEntities].[dbo].[Puzzle] (\"Puzzle_ID\", \"Puzzle_Name\", Puzzle_Score, Hint_Score,\"LEC_ID\") VALUES('" + PuzzleID + "','" + PuzzleName + "'," + PuzzleScore + "," + PuzzleHint + ",'" + LecID + "')");
                     sqlCommand.Connection = sqlConnection;
                     count = Convert.ToInt32(sqlCommand.ExecuteScalar());
@@ -322,6 +333,7 @@ namespace SEF_Assignment.Controllers
 
             return View("CreatePuz",cl);
         }
+
         public ActionResult RankingBoardLec()
         {
             Session["LecID"] = Session["LecID"];
@@ -329,10 +341,11 @@ namespace SEF_Assignment.Controllers
             return RedirectToAction("RankingBoard", "ManageClass");
         }
 
+        [HttpGet]
         public ActionResult DiscussionBoardLec()
         { 
 
-            return View();
+            return RedirectToAction("IndexLec", "DiscussionBoardLec");
         }
 
         public ActionResult ManageClassLec()

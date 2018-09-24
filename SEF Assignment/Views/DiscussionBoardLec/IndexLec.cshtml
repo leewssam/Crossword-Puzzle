@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Discussion Board";
+    Layout = "~/Views/DiscussionBoard/_DissLayout.cshtml";
+}
+
+<body class="dissBoard">
+    <h2>Discussion Board</h2>
+    <input type="button" class="btn backBtn" value="Home" onclick="@("window.location.href='" + @Url.Action("HomeLec", "HomeLec") + "'") ;">
+
+    <div class="dissBoardContainer">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button class="btn dissBtn" onclick="@("window.location.href='" + @Url.Action("CreateNewTopicLec", "DiscussionBoardLec") + "'") ;">Create New Topic</button>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button class="btn dissBtn" onclick="@("window.location.href='" + @Url.Action("ViewAllTopicsLec", "DiscussionBoardLec") + "'") ;">View All Topics</button>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</body>
+
+
+

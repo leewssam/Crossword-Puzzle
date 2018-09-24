@@ -1,0 +1,83 @@
+﻿@model SEF_Assignment.Models.Topic
+
+@{
+    ViewBag.Title = "ViewThisTopic";
+    Layout = "~/Views/DiscussionBoard/_DissLayout.cshtml";
+}
+
+<body class="dissBoard">
+    <div>
+        <input type="button" class="btn homeBtn" value="Home" onclick="@("window.location.href='" + @Url.Action("HomeStu", "HomeStu") + "'") ;">
+        <input type="button" class="btn backBtn" value="Back" onclick="@("window.location.href='" + @Url.Action("ViewAllTopicsStu", "DiscussionBoardStu") + "'") ;">
+
+        <div class="thisTopicContainer">
+            <h3><strong>@Html.DisplayFor(model => model.Topic_Title)</strong></h3>
+            <h4>@Html.DisplayFor(model => model.Topic_Content)</h4>
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4 postedBy">
+                    <p>
+                        Posted by
+                        @if (Model.Lec_ID == null)
+                        {
+                            @Model.Student.Stu_Name
+                            if (Model.Stu_ID == ViewBag.UserID)
+                            {
+                                @Html.ActionLink(" ", "ConfirmDeleteTopicStu", null, new { onclick = "return confirm('Are you sure to delete this topic?');" , @class = "glyphicon glyphicon-trash trashIcon" })
+                            }
+                        }
+                        else
+                        {
+                            @Model.Lecturer.Lec_Name
+                        }
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        @foreach (var c in Model.Comments)
+        {
+            <div class="commentContainer">
+                <p>@c.Comment_Content</p>
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4 postedBy">
+                        <p>
+                            Posted By
+                            @if (c.Lec_ID == null)
+                            {
+                                @c.Student.Stu_Name
+                                if (c.Stu_ID == ViewBag.UserID)
+                                {
+                                    @Html.ActionLink(" ", "ConfirmDeleteCommentStu", new { id = c.Comment_ID }, new { onclick = "return confirm('Are you sure to delete this comment?');", @class = "glyphicon glyphicon-trash trashIcon" })
+                                }
+
+                            }
+                            else
+                            {
+                                @c.Lecturer.Lec_Name
+                            }
+
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        @using (Html.BeginForm())
+        {
+            <div class="addNewCommentContainer">
+                <div class="row">
+                    <input type="text" name="comment" class="form-control col-md-10" />
+                    <input type="submit" class="btn addNewCommentBtn col-md-2" value="Add New Comment" />
+                </div>
+            </div>
+        }
+
+    </div>
+   
+
+</body>

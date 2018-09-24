@@ -162,6 +162,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DiscussionBoardLecController.cs" />
+    <Compile Include="Controllers\DiscussionBoardStuController.cs" />
     <Compile Include="Controllers\HomeLecController.cs" />
     <Compile Include="Controllers\HomeStuController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -219,6 +221,7 @@
     <Compile Include="ViewModel\CreateRanking.cs" />
     <Compile Include="ViewModel\GenerateAttendance.cs" />
     <Compile Include="ViewModel\Login.cs" />
+    <Compile Include="ViewModel\PlayPuzzle.cs" />
     <Compile Include="ViewModel\PuzzleList.cs" />
     <Compile Include="ViewModel\RegisterClass.cs" />
     <Compile Include="ViewModel\RegisterLec.cs" />
@@ -231,6 +234,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Diss.css" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\ManageClass.css" />
@@ -360,6 +364,16 @@
     <Content Include="Views\HomeLec\CreatePuz.cshtml" />
     <Content Include="Views\HomeLec\RemovePuz.cshtml" />
     <Content Include="Views\HomeLec\ConfirmRemove.cshtml" />
+    <Content Include="Views\HomeStu\PlayPuzzle.cshtml" />
+    <Content Include="Views\DiscussionBoardLec\CreateNewTopicLec.cshtml" />
+    <Content Include="Views\DiscussionBoardLec\IndexLec.cshtml" />
+    <Content Include="Views\DiscussionBoardLec\ViewAllTopicsLec.cshtml" />
+    <Content Include="Views\DiscussionBoardLec\ViewThisTopicLec.cshtml" />
+    <Content Include="Views\DiscussionBoardStu\CreateNewTopicStu.cshtml" />
+    <Content Include="Views\DiscussionBoardStu\IndexStu.cshtml" />
+    <Content Include="Views\DiscussionBoardStu\ViewAllTopicsStu.cshtml" />
+    <Content Include="Views\DiscussionBoardStu\ViewThisTopicStu.cshtml" />
+    <Content Include="Views\DiscussionBoard\_DissLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

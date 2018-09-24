@@ -1,0 +1,171 @@
+﻿/************************** Discussion Board *********************/
+div.row {
+    padding: 0;
+    margin: 0;
+}
+
+.dissBoard {
+    background-color: #00a6ff;
+}
+
+h2 {
+    font-size: 50px;
+    padding: 30px;
+}
+
+.dissBoardContainer {
+    margin-top: 60px;
+}
+
+.dissBtn {
+    width: 100%;
+    font-size: 40px;
+    background-color: #FCFF30;
+    padding: 20px;
+    margin: 40px;
+}
+
+.dissBtn:hover {
+    background-color: black;
+    color: #FCFF30;
+}
+
+input.homeBtn {
+    background-color: #3c4858;
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    top: 20px;
+    right: 150px;
+    padding: 5px 30px;
+}
+
+input.backBtn {
+    background-color: #3c4858;
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 30px;
+}
+
+input.homeBtn:hover, input.backBtn:hover {
+    background-color: white;
+    color: #3c4858;
+}
+
+.formContainer {
+    margin: 0 200px;
+    background-color: #FCFF30;
+}
+
+.formContainer label {
+    font-size: 25px;
+    margin: 25px 0;
+}
+
+.formContainer .form-control {
+    width: 80%;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 30px 0 17px 0;
+}
+
+.formContainer .createBtn {
+    float: right;
+    display: block;
+    margin: 0 20% 30px 0;
+    font-size: 20px;
+    padding: 10px 30px;
+    background-color: #3c4858;
+    color: white;
+}
+
+.formContainer .createBtn:hover {
+    color: #3c4858;
+    background-color: white;
+}
+
+/***************** View all topic ***********************/
+input.searchInput {
+    width: 80%;
+    margin-right: 20px;
+    font-size: 20px;
+    padding: 25px;
+}
+
+.searchBtn {
+    font-size: 20px;
+    padding: 10px 30px;
+    background-color: #3c4858;
+    color: white;
+}
+
+.searchBtn:hover {
+    background-color: white;
+    color: #3e4858;
+}
+
+.topicsContainer {
+    margin: 30px;
+}
+
+.eachTopicBtn {
+    background-color: #FCFF30;
+    padding: 20px;
+    margin: 10px 0;
+    font-size: 20px;
+    text-align: left;
+}
+
+.noSearchMatch {
+    font-size: 20px;
+    color: #3c4858;
+}
+
+/*********************** this topic **********/
+.thisTopicContainer {
+    background-color: #FCFF30;
+    margin: 130px 80px 30px 80px;
+    padding: 20px;
+}
+
+.postedBy {
+    text-align: right;
+}
+
+.addNewCommentBtn {
+    font-size: 15px;
+    padding: 10px 20px;
+    background-color: #3c4858;
+    color: white;
+}
+
+.addNewCommentBtn:hover {
+    background-color: white;
+    color: #3e4858;
+}
+
+.addNewCommentContainer .form-control {
+    width: 80%;
+    font-size: 15px;
+    padding: 20px;
+    margin-right: 20px;
+}
+
+.addNewCommentContainer {
+    margin: 20px 80px;
+}
+
+.commentContainer {
+    background-color: white;
+    border: 3px solid #FCFF30;
+    margin: 30px 80px;
+    padding: 20px;
+}
+
+/************************ modal ******************/
+.bs-example {
+    margin: 20px;
+}
