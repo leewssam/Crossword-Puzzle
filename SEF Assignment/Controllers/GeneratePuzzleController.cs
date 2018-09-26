@@ -100,6 +100,7 @@ namespace trycross.Views.Home
             Session["ClassID"] = Session["ClassID"];
             Session["LecID"] = Session["LecID"];
             Session["PuzzleID"] = Session["PuzzleID"];
+            String StudentID = Session["StuID"].ToString();
 
             string PuzzleID = Session["PuzzleID"].ToString();
             string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
@@ -160,8 +161,53 @@ namespace trycross.Views.Home
 
                 }
             }*/
+          
+
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM [SEF_AssignmentEntities].[dbo].[Attempt] WHERE \"STU_ID\" ='" + StudentID+"' AND \"PUZZLE_ID\" = '"+PuzzleID+"'");
+            sqlCommand.Connection = sqlConnection;
+            Int32 existscheck = (Int32)sqlCommand.ExecuteScalar();
+           // int existscheck = existscheck.ExecuteNonQuery();
+            string exist = existscheck.ToString();
+
+
+            if (existscheck <= 0)
+            {
+
+                DateTime myDateTime = DateTime.Now;
+                string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                string datee = sqlFormattedDate;
+                
+                sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEF_AssignmentEntities].[dbo].[Attempt] (\"STU_ID\",\"PUZZLE_ID\",\"PUZZLE_STATUS\",\"ATTEMPT_SCORE\",\"DATETIME_STAMP\") VALUES ('"+StudentID+"','"+PuzzleID+"',"+"1,"+ summark+ ",'"+datee+"')");
+                sqlCommand.Connection = sqlConnection;
+                int mark = sqlCommand.ExecuteNonQuery();
+
+            }
+
+            else
+            {
+                sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT ATTEMPT_SCORE FROM [SEF_AssignmentEntities].[dbo].[Attempt] WHERE \"STU_ID\" ='" + StudentID + "' AND \"PUZZLE_ID\" = '" + PuzzleID + "'");
+                sqlCommand.Connection = sqlConnection;
+                int markbefore = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                if (markbefore <= summark)
+                {
+                    DateTime myDateTime = DateTime.Now;
+                    string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                    string datee = sqlFormattedDate;
+                    sqlCommand = new System.Data.SqlClient.SqlCommand("UPDATE [SEF_AssignmentEntities].[dbo].[Attempt] SET \"ATTEMPT_SCORE\"="+summark+" ,\"DATETIME_STAMP\"='"+datee+"' WHERE(\"STU_ID\" ='" + StudentID+"' AND \"PUZZLE_ID\"='"+PuzzleID+"')");
+
+                    sqlCommand.Connection = sqlConnection;
+                    int mark = sqlCommand.ExecuteNonQuery();
+                }
+                else
+                {
+                    
+                }
+            }
+
+
 
             string summm = summark.ToString();
+
             return Content("Sum of mark = "+ summm);
         }
     }
