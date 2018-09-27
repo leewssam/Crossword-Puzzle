@@ -211,7 +211,7 @@ namespace SEF_Assignment.Controllers
             System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
             sqlConnection.Open();
 
-            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_ID FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "'");
+            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_ID FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader mynewreader = sqlCommand.ExecuteReader();
 
@@ -222,7 +222,7 @@ namespace SEF_Assignment.Controllers
 
             mynewreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_Name FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "'");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_Name FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
             sqlCommand.Connection = sqlConnection;
 
             SqlDataReader newreader = sqlCommand.ExecuteReader();
@@ -233,7 +233,7 @@ namespace SEF_Assignment.Controllers
             }
             newreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_TotalScore FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "'");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_TotalScore FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
             sqlCommand.Connection = sqlConnection;
 
             SqlDataReader newmyreader = sqlCommand.ExecuteReader();

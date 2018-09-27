@@ -23,12 +23,12 @@ namespace SEF_Assignment.Controllers
         [HttpPost]
         public ActionResult ChooseIdentity(string identity)
         {
-            if(identity.Equals("lecturer"))
+            if (identity.Equals("lecturer"))
             {
                 Session["userIdentity"] = "Lecturer";
                 return RedirectToAction("ChooseAction", "Login");
             }
-            else if(identity.Equals("student"))
+            else if (identity.Equals("student"))
             {
                 Session["userIdentity"] = "Student";
                 return RedirectToAction("ChooseAction", "Login");
@@ -45,27 +45,27 @@ namespace SEF_Assignment.Controllers
         }
 
         //POST: choose action
-        [HttpPost] 
+        [HttpPost]
         public ActionResult ChooseAction(string action)
         {
-            
-            if(action.Equals("login"))
+
+            if (action.Equals("login"))
             {
                 return RedirectToAction("Login");
             }
-            else if(action.Equals("register"))
+            else if (action.Equals("register"))
             {
-                if(Session["userIdentity"].Equals("Student"))
+                if (Session["userIdentity"].Equals("Student"))
                 {
                     return RedirectToAction("RegisterStu");
                 }
-                else if(Session["userIdentity"].Equals("Lecturer"))
+                else if (Session["userIdentity"].Equals("Lecturer"))
                 {
                     return RedirectToAction("RegisterLec");
                 }
-                
+
             }
-            
+
             return View();
         }
 
@@ -82,8 +82,8 @@ namespace SEF_Assignment.Controllers
             if (Session["userIdentity"].Equals("Student"))
             {
                 Student stuLogin = db.Students.Find(f.UserID);
-              
-                if(stuLogin == null)
+
+                if (stuLogin == null)
                 {
                     ModelState.AddModelError("UserID", "This account does not exist.");
                 }
@@ -119,7 +119,7 @@ namespace SEF_Assignment.Controllers
                     }
                 }
             }
-            
+
             return View();
         }
 
@@ -135,7 +135,15 @@ namespace SEF_Assignment.Controllers
             sqlCommand.Connection = sqlConnection;
 
             int count = Convert.ToInt32(sqlCommand.ExecuteScalar()) + 1;
-            String newID = "LEC" + count.ToString("000");
+            string newID = "LEC" + count.ToString("000");
+            Lecturer existLec = db.Lecturers.Find(newID);
+            while (existLec != null)
+            {
+                count++;
+                newID = "LEC" + count.ToString("000");
+                existLec = db.Lecturers.Find(newID);
+
+            }
 
             var model = new RegisterLec
             {
@@ -148,7 +156,7 @@ namespace SEF_Assignment.Controllers
         // POST: Register for lecturer
         [HttpPost]
         public ActionResult RegisterLec(string action, RegisterLec f)
-        { 
+        {
             if (!ModelState.IsValid)
             {
                 return View();
@@ -178,7 +186,7 @@ namespace SEF_Assignment.Controllers
                 }
 
             }
-            
+
             return View();
         }
 
@@ -194,7 +202,15 @@ namespace SEF_Assignment.Controllers
             sqlCommand.Connection = sqlConnection;
 
             int count = Convert.ToInt32(sqlCommand.ExecuteScalar()) + 1;
-            String newID = "STU" + count.ToString("000");
+            string newID = "STU" + count.ToString("000");
+            Student existStu = db.Students.Find(newID);
+            while (existStu != null)
+            {
+                count++;
+                newID = "STU" + count.ToString("000");
+                existStu = db.Students.Find(newID);
+
+            }
 
             var model = new RegisterStu
             {

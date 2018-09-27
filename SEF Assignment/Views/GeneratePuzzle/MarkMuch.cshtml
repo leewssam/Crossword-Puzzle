@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Show Mark";
+    Layout = "~/Views/DiscussionBoard/_DissLayout.cshtml";
+}
+<style>
+    .dissBoard {
+        background-color: black;
+    }
+
+    div.A {
+        background-color: #FF4A4A;
+        margin-top: -20px; 
+
+    }
+
+    h2.header {
+        font-size: "50";
+    }
+
+    div.B {
+
+        font-size: 100px;
+    }
+
+
+</style>
+
+<div class="A">
+    <font color="white"><h2 class="header">Score</h2></font>
+    <input type="button" class="btn homeBtn" value="Home" onclick="@("window.location.href='" + @Url.Action("HomeStu", "HomeStu") + "'");">
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+
+
+<div class="B" align="center">
+    <font color="#00A6FF">@TempData["MarkBefore"]</font>
+    <br/>
+        <font color="#77D353">(+@TempData["MarkToAdd"])</font>
+    </div>
+

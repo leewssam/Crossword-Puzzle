@@ -308,7 +308,7 @@ namespace SEF_Assignment.Controllers
 
             sqlConnection.Open();
 
-            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_ID FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "'");
+            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_ID FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader myreader = sqlCommand.ExecuteReader();
 
@@ -321,7 +321,7 @@ namespace SEF_Assignment.Controllers
             }
             myreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_Name FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "'");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_Name FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
             sqlCommand.Connection = sqlConnection;
 
             SqlDataReader newreader = sqlCommand.ExecuteReader();
@@ -332,7 +332,7 @@ namespace SEF_Assignment.Controllers
             }
             newreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_TotalScore FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "'");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_TotalScore FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
             sqlCommand.Connection = sqlConnection;
 
             SqlDataReader mynewreader = sqlCommand.ExecuteReader();
@@ -795,62 +795,79 @@ namespace SEF_Assignment.Controllers
                 List<String> StudentNameList = new List<String>();
                 List<String> ScoreList = new List<String>();
                 List<String> DateList = new List<string>();
-
-                foreach (var item in cl.ViewAttendanceList)
+                try
                 {
-                    StudentIDList.Add(item.StudentID);
-                    StudentNameList.Add(item.StudentName);
-                    ScoreList.Add(item.Score);
-                    DateList.Add(item.DateTime);
+                    foreach (var item in cl.ViewAttendanceList)
+                    {
+                        StudentIDList.Add(item.StudentID);
+                        StudentNameList.Add(item.StudentName);
+                        ScoreList.Add(item.Score);
+                        DateList.Add(item.DateTime);
+                    }
+
+                    doc1.Open();
+                    PdfPTable table = new PdfPTable(5);
+
+                    table.TotalWidth = 500f;
+                    table.LockedWidth = true;
+
+                    float[] widths = new float[] {50f, 100f, 150f, 100f, 100f};
+
+                    table.SetWidths(widths);
+                    table.HorizontalAlignment = 0;
+                    table.SpacingBefore = 20f;
+                    table.SpacingAfter = 30f;
+
+                    int counter = 1;
+                    PdfPCell cell = new PdfPCell(new Phrase("Attendance List for Class: " + selectedclass));
+                    String stcounter;
+                    cell.Colspan = 5;
+
+                    cell.Border = 0;
+
+                    cell.HorizontalAlignment = 1;
+
+                    table.AddCell(cell);
+
+                    for (int i = 0; i < StudentIDList.Count; i++)
+                    {
+                        stcounter = counter.ToString();
+                        table.AddCell(stcounter);
+                        counter++;
+                        table.AddCell(StudentIDList[i]);
+                        table.AddCell(StudentNameList[i]);
+                        table.AddCell(ScoreList[i]);
+                        table.AddCell(DateList[i]);
+                    }
+
+                    doc1.Add(table);
+                    doc1.Close();
+
+                    string filename = (selectedclass + "_AttendanceList.pdf");
+                    Response.ContentType = "application/octet-stream";
+                    Response.AppendHeader("Content-Disposition", "attachment;filename=" + filename);
+                    string filepath =
+                        String.Format("D:\\Users\\Sam\\Desktop\\Projects\\SEF\\SEF Assignment\\PDF\\" + filename);
+                    //      string filepath = Server.MapPath("~/SavedFolder/" + filename);
+                    Response.TransmitFile(filepath);
+                    Response.End();
+                    return RedirectToAction("ManageClass");
                 }
 
-                doc1.Open();
-                PdfPTable table = new PdfPTable(5);
-
-                table.TotalWidth = 500f;
-                table.LockedWidth = true;
-
-                float[] widths = new float[] { 50f, 100f, 150f, 100f, 100f };
-
-                table.SetWidths(widths);
-                table.HorizontalAlignment = 0;
-                table.SpacingBefore = 20f;
-                table.SpacingAfter = 30f;
-
-                int counter = 1;
-                PdfPCell cell = new PdfPCell(new Phrase("Attendance List for Class: " + selectedclass));
-                String stcounter;
-                cell.Colspan = 5;
-
-                cell.Border = 0;
-
-                cell.HorizontalAlignment = 1;
-
-                table.AddCell(cell);
-
-                for (int i = 0; i < StudentIDList.Count; i++)
+                catch (Exception ex)
                 {
-                    stcounter = counter.ToString();
-                    table.AddCell(stcounter);
-                    counter++;
-                    table.AddCell(StudentIDList[i]);
-                    table.AddCell(StudentNameList[i]);
-                    table.AddCell(ScoreList[i]);
-                    table.AddCell(DateList[i]);
+                    return RedirectToAction("Error");
                 }
-                doc1.Add(table);
-                doc1.Close();
 
-                string filename = (selectedclass + "_AttendanceList.pdf");
-                Response.ContentType = "application/octet-stream";
-                Response.AppendHeader("Content-Disposition", "attachment;filename=" + filename);
-                string filepath = String.Format("D:\\Users\\Sam\\Desktop\\Projects\\SEF\\SEF Assignment\\PDF\\" + filename);
-                //      string filepath = Server.MapPath("~/SavedFolder/" + filename);
-                Response.TransmitFile(filepath);
-                Response.End();
-                return RedirectToAction("ManageClass");
             }
 
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Error()
+        {
             return View();
         }
 

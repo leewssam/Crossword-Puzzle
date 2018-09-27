@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Mark Is Lower!";
+    Layout = "~/Views/DiscussionBoard/_DissLayout.cshtml";
+}
+<style>
+    .dissBoard {
+        background-color: #FF4A4A;
+    }                         
+</style>
+<body class="dissBoard">
+    <font color="white"><h2 class="header">Opps!</h2></font>
+<input type="button" class="btn homeBtn" value="Home" onclick="@("window.location.href='" + @Url.Action("HomeStu", "HomeStu") + "'") ;">
+<input type="button" class="btn backBtn" value="Back" onclick="@("window.location.href='" + @Url.Action("puzzleStu", "HomeStu") + "'") ;" />
+
+<div>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+<div align="center">
+    <font color="white">
+        <h2 class="header">Your tries marks is lower than our database recorded!</h2>
+        <br />
+        <h2 class="header">Good game, but try harder next time!</h2>
+    </font>
+</div>
+    

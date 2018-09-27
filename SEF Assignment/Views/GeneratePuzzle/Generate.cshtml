@@ -11,14 +11,13 @@
     }                         
 </style>
 <body class="dissBoard">
-        <h2 class="header">Play Puzzle</h2>
+<font color="white"><h2 class="header">Play Puzzle</h2></font>
         <input type="button" class="btn homeBtn" value="Home" onclick="@("window.location.href='" + @Url.Action("HomeStu", "HomeStu") + "'") ;">
         <input type="button" class="btn backBtn" value="Back" onclick="@("window.location.href='" + @Url.Action("puzzleStu", "HomeStu") + "'") ;" />
 
 <div>
     <div class="col-md-4"></div>
     <b><h3 class="header"><font color="black" size="2"><b>Lecturer given hint:</b></font></h3></b>
-    <br/>
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <font color="black">
@@ -43,11 +42,11 @@
         <div style="margin:50px;margin-left:500px;position:relative;">
             @{
                 var thisPuzzle = ViewData["CanvasWriter"] as trycross.Model.ICanvasWriter;
-
                 @Html.Raw(thisPuzzle.write((ViewData["Canvas"]) as trycross.Model.Canvas))
-
                 var count = thisPuzzle.getCount();
             }
+            <iframe style="display:none" onload="counting(@count)" src="www.google.com"></iframe>
+
         </div>
         <div class="col-md-7">
             <input type="button" class="btn backBtn" value="Submit Quiz" onclick="save(@count)"/>
@@ -61,24 +60,29 @@
 
 
 <script type="text/javascript">
-        function save(count) {
-            var attempt = [];
-            var ans = [];
 
-            for (var i = 0; i < count - 1; i++) {
-                if (document.getElementById(i + 1) != null) {
-                    var value = document.getElementById(i + 1).innerHTML;
-                    var realAns = document.getElementById(i + 1).className;
-                    var substring = "<br>";
-                    
-                    attempt[i] = value;
-                    
-                    ans[i] = realAns;
+    function counting(count) {
 
-                }
-                window.location.href = "/GeneratePuzzle/Check?a=" + attempt + "&b=" + ans;
+    }
+    function save(count) {
+        var attempt = [];
+        var ans = [];
+
+        for (var i = 0; i < count - 1; i++) {
+            if (document.getElementById(i + 1) != null) {
+                var value = document.getElementById(i + 1).innerHTML;
+
+                value = value.replace('<br>', '');
+                var realAns = document.getElementById(i + 1).className;
+                    
+                attempt[i] = value;
+                    
+                ans[i] = realAns;
+
             }
-
+            window.location.href = "/GeneratePuzzle/Check?a=" + attempt + "&b=" + ans;
         }
-        
-    </script>
+
+    }
+
+</script>
