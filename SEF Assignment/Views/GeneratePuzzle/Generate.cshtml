@@ -62,6 +62,30 @@
 <script type="text/javascript">
 
     function counting(count) {
+        var ans = [];
+        ans[i] = realAns;
+
+        for (var i = 0; i < count - 1; i++) {
+            if (document.getElementById(i + 1) != null) {
+                var realAns = document.getElementById(i + 1).className;
+                ans[i] = realAns;
+
+            }
+            }
+
+        var an = ans;
+        var counter = 1;
+        for (var i = 0; i < ans.length; i++) {
+            if (ans[i] == null) {
+                counter++;
+            }
+        }
+        var sumquestion = @TempData["SumQuestion"];
+        if (sumquestion != counter)
+        {
+            window.location.href = "/GeneratePuzzle/Generate";
+        }
+
 
     }
     function save(count) {
@@ -80,6 +104,7 @@
                 ans[i] = realAns;
 
             }
+            
             window.location.href = "/GeneratePuzzle/Check?a=" + attempt + "&b=" + ans;
         }
 

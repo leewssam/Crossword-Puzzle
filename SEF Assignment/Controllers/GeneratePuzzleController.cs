@@ -58,7 +58,7 @@ namespace trycross.Views.Home
             {
                 QuestionList.Add(newreader[0].ToString().ToUpper());
             }
-
+            newreader.Close();
             string[] input = AnswerList.ToArray();
 
             for (ushort i = 0; i < input.Length; i++)
@@ -81,6 +81,12 @@ namespace trycross.Views.Home
             ViewData["Canvas"] = canvas;
             ViewData["CanvasWriter"] = canvasWriter;
 
+            sqlCommand = new System.Data.SqlClient.SqlCommand(
+                "SELECT COUNT(*) FROM [SEF_AssignmentEntities].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID + "'");
+            sqlCommand.Connection = sqlConnection;
+
+            int sumquestion = Convert.ToInt32(sqlCommand.ExecuteScalar());
+            TempData["SumQuestion"] = sumquestion;
             var model = new PlayPuzzle
             {
                 QuestionList = QuestionList,
