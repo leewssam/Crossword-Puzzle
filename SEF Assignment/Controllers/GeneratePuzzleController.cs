@@ -106,7 +106,7 @@ namespace trycross.Views.Home
             return Json(RedirectToAction("Check", new {a = a, b = b}));
         }
 
-        public ActionResult Check(string[] a, string[] b)
+        public ActionResult Check(string[] a, string[] b, string c)
         {
             Session["StuID"] = Session["StuID"];
             Session["ClassID"] = Session["ClassID"];
@@ -122,8 +122,20 @@ namespace trycross.Views.Home
             sqlConnection.Open();
 
             System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand(
+                "SELECT Hint_Score FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE Puzzle_ID='" + PuzzleID + "'");
+            sqlCommand.Connection = sqlConnection;
+            int hintscore = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
+            int sumhint = Int32.Parse(c);
+            float sumusedhint = sumhint;
+            hintscore = hintscore * -1;
+
+            sumhint = sumhint * hintscore;
+
+            sqlCommand = new System.Data.SqlClient.SqlCommand(
                 "SELECT Puzzle_Score FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE Puzzle_ID='" + PuzzleID + "'");
             sqlCommand.Connection = sqlConnection;
+
 
             int fullmark = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
@@ -134,8 +146,11 @@ namespace trycross.Views.Home
             int sumquestion = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
 
+            sumquestion = sumquestion;
+
             float permark = fullmark / sumquestion;
 
+            sumusedhint = sumusedhint * permark * -1;
             string test = sumquestion.ToString();
 
 
@@ -165,6 +180,9 @@ namespace trycross.Views.Home
                     }
                 }
             }
+
+
+            summark = summark + sumhint + sumusedhint;
 
             sqlCommand = new System.Data.SqlClient.SqlCommand(
                 "SELECT SUM(Attempt_Score) FROM [SEF_AssignmentEntities].[dbo].[Attempt] WHERE \"STU_ID\" ='" +

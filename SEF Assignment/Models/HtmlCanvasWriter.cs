@@ -39,7 +39,7 @@ namespace trycross.Model
             for (short i = 0; i < canvas.WordsAtCanvas.Count; i++)
             {
                 Word w = canvas.WordsAtCanvas[i];
-                
+
                 char[] wChars = w.ToString().ToCharArray();
 
                 for (short n = 0; n < wChars.Count(); n++)
@@ -64,33 +64,33 @@ namespace trycross.Model
                         ;
                     }
                     else if (w.Orientation == Orientation.Horizontal)
-                    {     
+                    {
                         Builder
                             .Append("left:").Append((w.X + n) * (this.TamanhoLacuna + this.BordaLacuna * 2)).Append("px;")
                             .Append("top:").Append(w.Y * (this.TamanhoLacuna + this.BordaLacuna * 2)).Append("px;")
                         ;
                     }
 
-                    if(n == 0)
+                    if (n == 0)
                     {
                         Builder
-                        .Append("'>")
-                        .Append(wChars[n])
-                        .Append("</div>")
-                        ;
+                            .Append("'>")
+                            .Append(wChars[n])
+                            .Append("</div>")
+                            ;
                     }
                     else
                     {
                         Builder
-                        .Append("' contenteditable='true' class='" +wChars[n]+ "' id='" + count + "' >")
-                        //.Append(wChars[n])
-                        .Append("</div>")
-                        ;
-                        if(!ans.ContainsKey(count))
+                            .Append("' contenteditable='true' class='" + wChars[n] + " question" + wChars[0] + "' id='" + count + "' >")
+                            //.Append(wChars[n])
+                            .Append("</div>")
+                            ;
+                        if (!ans.ContainsKey(count))
                         {
                             ans.Add(count, wChars[n]);
                         }
-                        
+
                     }
                     count++;
                 }
@@ -99,7 +99,7 @@ namespace trycross.Model
             Builder.Append("</div>");
             Builder.Append(String.Format("<input type='hidden' name='words' id='words' value='{0}' />", canvas.WordsAtCanvas.Count));
 
-            
+
             return Builder.ToString();
         }
     }

@@ -2,6 +2,12 @@
     color: #3c4858;
 }
 
+btn:hover, .btn:focus, .btn.focus {
+    color: #333;
+    text-decoration: none;
+    background-color: white;
+}
+
 div.row {
     padding: 0;
     margin: 0;
@@ -113,6 +119,19 @@ div.row {
     background-color: rgb(151, 109, 208);
     color: white;
 }
+
+.loginFormStyle .loginBtn:hover {
+    background-color: white;
+    color: #3c4858;
+}
+
+.loginFormStyle .actionBtn:hover {
+    color: rgb(151, 109, 208);
+    background-color: white;
+}
+
+
+
 
 /******* Registration **********************/
 .registerStyle {
