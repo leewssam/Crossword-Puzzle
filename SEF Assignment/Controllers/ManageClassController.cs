@@ -428,6 +428,7 @@ namespace SEF_Assignment.Controllers
         [HttpPost]
         public ActionResult PuzzleList(PuzzlesList cl, string action)
         {
+            
             Session["Class"] = Session["Class"];
             if (action.Equals("home"))
             {
@@ -436,6 +437,7 @@ namespace SEF_Assignment.Controllers
 
             else if (action.Equals("back"))
             {
+                
                 return RedirectToAction("ManageClass");
             }
 

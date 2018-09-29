@@ -158,7 +158,8 @@ namespace SEF_Assignment.Controllers
 
             return View();
         }
-
+        
+        
         [HttpGet]
         public ActionResult PlayPuzzle()
         {

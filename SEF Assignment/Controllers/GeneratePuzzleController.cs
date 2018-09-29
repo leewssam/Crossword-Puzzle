@@ -93,7 +93,6 @@ namespace trycross.Views.Home
 
             };
             return View(model);
-            return View("Generate");
         }
 
         [HttpPost]
@@ -146,7 +145,6 @@ namespace trycross.Views.Home
             int sumquestion = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
 
-            sumquestion = sumquestion;
 
             float permark = fullmark / sumquestion;
 
@@ -274,10 +272,6 @@ namespace trycross.Views.Home
                     return RedirectToAction("MarkLess");
                 }
             }
-
-            string summm = summark.ToString();
-
-            return Content("Sum of mark = " + summm);
         }
 
         [HttpGet]

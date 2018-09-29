@@ -1,0 +1,104 @@
+﻿@using SEF_Assignment.ViewModel
+@model SEF_Assignment.ViewModel.PlayPuzzle
+
+<pages validateRequest="false" />
+@{
+    ViewBag.Title = "Show Puzzle";
+    Layout = "~/Views/DiscussionBoard/_DissLayout.cshtml";
+}
+
+<script>
+    var hintcounter = 0;
+</script>
+<style>
+    .dissBoard {
+        background-color: #FF4A4A;
+    }
+
+    button {
+        background-color: #47525E;
+        color: white;
+        font-size: 25px;
+        padding: 5px 30px;
+        margin: 0 auto;
+        margin-right: 10px;
+    }
+
+    }
+</style>
+<body class="dissBoard">
+    <font color="white"><h2 class="header">Play Puzzle</h2></font>
+    <input type="button" class="btn homeBtn" value="Home" onclick="@("window.location.href='" + @Url.Action("HomeStu", "HomeStu") + "'") ;">
+    <input type="button" class="btn backBtn" value="Back" onclick="@("window.location.href='" + @Url.Action("puzzleStu", "HomeStu") + "'") ;" />
+
+    <div>
+        <div class="col-md-4"></div>
+        <b><h3 class="header"><font color="black" size="2"><b>Lecturer given hint:</b></font></h3></b>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <font color="black">
+                @{
+                    int counter = (Model.QuestionList.Count + 1);
+                }
+            </font>
+            @for (var i = 1; i < (counter); i++)
+            {
+                <b><font color="black">@i.</font></b>
+                <font color="black">@Model.QuestionList[i - 1]</font>
+                <br />
+
+            }
+        </div>
+    </div>
+    <br />
+    <br />
+    @if (ViewData["CanvasWriter"] != null && ViewData["Canvas"] != null)
+    {
+        <div class="col-md-1"></div>
+        <div style="margin:50px;margin-left:500px;position:relative;">
+            @{
+                var thisPuzzle = ViewData["CanvasWriter"] as trycross.Model.ICanvasWriter;
+                @Html.Raw(thisPuzzle.write((ViewData["Canvas"]) as trycross.Model.Canvas))
+                var count = thisPuzzle.getCount();
+            }
+            <div align="center">
+                <iframe style="display:none" onload="counting(@count)" src="www.google.com"></iframe>
+            </div>
+        </div>
+
+                }
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+    <script type="text/javascript">
+
+        function counting(count) {
+            var ans = [];
+            ans[i] = realAns;
+
+            for (var i = 0; i < count - 1; i++) {
+                if (document.getElementById(i + 1) != null) {
+                    var realAns = document.getElementById(i + 1).classList[0];
+                    ans[i] = realAns;
+
+                }
+            }
+
+            var an = ans;
+            var counter = 1;
+            for (var i = 0; i < ans.length; i++) {
+                if (ans[i] == null) {
+                    counter++;
+                }
+            }
+            var sumquestion = @TempData["SumQuestion"];
+            if (sumquestion != counter) {
+                window.location.href = "/GeneratePuzzle/Generate";
+            }
+           
+
+        }
+    </script>

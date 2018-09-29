@@ -389,6 +389,8 @@
     <Content Include="Views\GeneratePuzzle\MarkLess.cshtml" />
     <Content Include="Views\GeneratePuzzle\MarkMuch.cshtml" />
     <Content Include="Views\ManageClass\Error.cshtml" />
+    <Content Include="Views\HomeLec\LecPuzzleList.cshtml" />
+    <Content Include="Views\HomeLec\ShowPuzLec.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
