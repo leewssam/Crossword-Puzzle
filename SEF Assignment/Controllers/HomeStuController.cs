@@ -19,11 +19,11 @@ namespace SEF_Assignment.Controllers
             String StuID = Session["StuID"].ToString();
             String ClassID = "";
             String LecID ="";
-            string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
             sqlConnection.Open();
-            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Class_ID FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE STU_ID='" + StuID + "'");
+            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Class_ID FROM [SEFASSIGNMENT].[dbo].[Student] WHERE STU_ID='" + StuID + "'");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader myreader = sqlCommand.ExecuteReader();
 
@@ -34,7 +34,7 @@ namespace SEF_Assignment.Controllers
 
             myreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Lec_ID FROM [SEF_AssignmentEntities].[dbo].[Class] WHERE Class_Id='" + ClassID + "'");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Lec_ID FROM [SEFASSIGNMENT].[dbo].[Class] WHERE Class_Id='" + ClassID + "'");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader mynewreader = sqlCommand.ExecuteReader();
 
@@ -74,11 +74,11 @@ namespace SEF_Assignment.Controllers
             
 
             String LecID = Session["LecID"].ToString();
-            string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
             sqlConnection.Open();
 
-            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_ID FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
+            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_ID FROM [SEFASSIGNMENT].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader myreader = sqlCommand.ExecuteReader();
             List<String> PuzzleIDList = new List<String>();
@@ -89,7 +89,7 @@ namespace SEF_Assignment.Controllers
 
             myreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_Name FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_Name FROM [SEFASSIGNMENT].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
             sqlCommand.Connection = sqlConnection;
 
             SqlDataReader newmyreader = sqlCommand.ExecuteReader();
@@ -208,11 +208,11 @@ namespace SEF_Assignment.Controllers
             List<String> TotalScoreList = new List<string>();
             
 
-            string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
             sqlConnection.Open();
 
-            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_ID FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
+            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_ID FROM [SEFASSIGNMENT].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader mynewreader = sqlCommand.ExecuteReader();
 
@@ -223,7 +223,7 @@ namespace SEF_Assignment.Controllers
 
             mynewreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_Name FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_Name FROM [SEFASSIGNMENT].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
             sqlCommand.Connection = sqlConnection;
 
             SqlDataReader newreader = sqlCommand.ExecuteReader();
@@ -234,7 +234,7 @@ namespace SEF_Assignment.Controllers
             }
             newreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_TotalScore FROM [SEF_AssignmentEntities].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Stu_TotalScore FROM [SEFASSIGNMENT].[dbo].[Student] WHERE Class_Id='" + ClassID + "' ORDER BY STU_TOTALSCORE DESC");
             sqlCommand.Connection = sqlConnection;
 
             SqlDataReader newmyreader = sqlCommand.ExecuteReader();

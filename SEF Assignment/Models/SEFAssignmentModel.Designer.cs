@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\yeanwei97\Desktop\SEF Assignment\SEF Assignment\Models\SEFAssignmentModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\User\Desktop\SEF Assignment\FinalVer1\SEF Assignment\Models\SEFAssignmentModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

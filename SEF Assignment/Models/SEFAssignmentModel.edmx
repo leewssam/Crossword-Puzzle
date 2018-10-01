@@ -559,7 +559,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SEF_AssignmentEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SEFASSIGNMENT" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answers" EntityType="Self.Answer" />
           <EntitySet Name="Attempts" EntityType="Self.Attempt" />
           <EntitySet Name="Classes" EntityType="Self.Class" />
@@ -623,7 +623,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SEF_AssignmentEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SEFASSIGNMENT">
           <EntitySetMapping Name="Answers">
             <EntityTypeMapping TypeName="Model.Answer">
               <MappingFragment StoreEntitySet="Answer">

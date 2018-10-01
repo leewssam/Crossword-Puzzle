@@ -9,7 +9,7 @@ namespace SEF_Assignment.Controllers
 {
     public class DiscussionBoardStuController : Controller
     {
-        SEF_AssignmentEntities db = new SEF_AssignmentEntities();
+        SEFASSIGNMENT db = new SEFASSIGNMENT();
 
         public ActionResult IndexStu()
         {

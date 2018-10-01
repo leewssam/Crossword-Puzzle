@@ -28,13 +28,13 @@ namespace trycross.Views.Home
 
 
             string connectionString =
-                @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection =
                 new System.Data.SqlClient.SqlConnection(connectionString);
             sqlConnection.Open();
 
             System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT Answer_Content FROM [SEF_AssignmentEntities].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID +
+                "SELECT Answer_Content FROM [SEFASSIGNMENT].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID +
                 "'");
             sqlCommand.Connection = sqlConnection;
 
@@ -49,7 +49,7 @@ namespace trycross.Views.Home
             myreader.Close();
 
             sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT Question_Content FROM [SEF_AssignmentEntities].[dbo].[Question] WHERE Puzzle_ID='" + PuzzleID +
+                "SELECT Question_Content FROM [SEFASSIGNMENT].[dbo].[Question] WHERE Puzzle_ID='" + PuzzleID +
                 "'");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader newreader = sqlCommand.ExecuteReader();
@@ -82,7 +82,7 @@ namespace trycross.Views.Home
             ViewData["CanvasWriter"] = canvasWriter;
 
             sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT COUNT(*) FROM [SEF_AssignmentEntities].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID + "'");
+                "SELECT COUNT(*) FROM [SEFASSIGNMENT].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID + "'");
             sqlCommand.Connection = sqlConnection;
 
             int sumquestion = Convert.ToInt32(sqlCommand.ExecuteScalar());
@@ -115,13 +115,13 @@ namespace trycross.Views.Home
 
             string PuzzleID = Session["PuzzleID"].ToString();
             string connectionString =
-                @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection =
                 new System.Data.SqlClient.SqlConnection(connectionString);
             sqlConnection.Open();
 
             System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT Hint_Score FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE Puzzle_ID='" + PuzzleID + "'");
+                "SELECT Hint_Score FROM [SEFASSIGNMENT].[dbo].[Puzzle] WHERE Puzzle_ID='" + PuzzleID + "'");
             sqlCommand.Connection = sqlConnection;
             int hintscore = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
@@ -132,14 +132,14 @@ namespace trycross.Views.Home
             sumhint = sumhint * hintscore;
 
             sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT Puzzle_Score FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE Puzzle_ID='" + PuzzleID + "'");
+                "SELECT Puzzle_Score FROM [SEFASSIGNMENT].[dbo].[Puzzle] WHERE Puzzle_ID='" + PuzzleID + "'");
             sqlCommand.Connection = sqlConnection;
 
 
             int fullmark = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
             sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT COUNT(*) FROM [SEF_AssignmentEntities].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID + "'");
+                "SELECT COUNT(*) FROM [SEFASSIGNMENT].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID + "'");
             sqlCommand.Connection = sqlConnection;
 
             int sumquestion = Convert.ToInt32(sqlCommand.ExecuteScalar());
@@ -183,7 +183,7 @@ namespace trycross.Views.Home
             summark = summark + sumhint + sumusedhint;
 
             sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT SUM(Attempt_Score) FROM [SEF_AssignmentEntities].[dbo].[Attempt] WHERE \"STU_ID\" ='" +
+                "SELECT SUM(Attempt_Score) FROM [SEFASSIGNMENT].[dbo].[Attempt] WHERE \"STU_ID\" ='" +
                 StudentID + "'");
             sqlCommand.Connection = sqlConnection;
 
@@ -200,7 +200,7 @@ namespace trycross.Views.Home
             TempData["MarkToAdd"] = MarkToAdd;
 
 
-           sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM [SEF_AssignmentEntities].[dbo].[Attempt] WHERE \"STU_ID\" ='" + StudentID +"' AND \"PUZZLE_ID\" = '" + PuzzleID + "'");
+           sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM [SEFASSIGNMENT].[dbo].[Attempt] WHERE \"STU_ID\" ='" + StudentID +"' AND \"PUZZLE_ID\" = '" + PuzzleID + "'");
             sqlCommand.Connection = sqlConnection;
 
             Int32 existscheck = (Int32) sqlCommand.ExecuteScalar();
@@ -214,18 +214,18 @@ namespace trycross.Views.Home
                 string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 string datee = sqlFormattedDate;
 
-                sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEF_AssignmentEntities].[dbo].[Attempt] (\"STU_ID\",\"PUZZLE_ID\",\"PUZZLE_STATUS\",\"ATTEMPT_SCORE\",\"DATETIME_STAMP\") VALUES ('" +StudentID + "','" + PuzzleID + "'," + "1," + summark + ",'" + datee + "')");
+                sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEFASSIGNMENT].[dbo].[Attempt] (\"STU_ID\",\"PUZZLE_ID\",\"PUZZLE_STATUS\",\"ATTEMPT_SCORE\",\"DATETIME_STAMP\") VALUES ('" +StudentID + "','" + PuzzleID + "'," + "1," + summark + ",'" + datee + "')");
                 sqlCommand.Connection = sqlConnection;
                 int mark = sqlCommand.ExecuteNonQuery();
 
                 sqlCommand = new System.Data.SqlClient.SqlCommand(
-                    "SELECT SUM(Attempt_Score) FROM [SEF_AssignmentEntities].[dbo].[Attempt] WHERE \"STU_ID\" ='" +
+                    "SELECT SUM(Attempt_Score) FROM [SEFASSIGNMENT].[dbo].[Attempt] WHERE \"STU_ID\" ='" +
                     StudentID + "'");
                 sqlCommand.Connection = sqlConnection;
 
                 object finalmark = sqlCommand.ExecuteScalar();
                 int FinalMark = Convert.ToInt32(finalmark);
-                sqlCommand = new System.Data.SqlClient.SqlCommand("UPDATE [SEF_AssignmentEntities].[dbo].[Student] SET \"Stu_TotalScore\"=" + FinalMark + " WHERE \"STU_ID\" ='" + StudentID + "'");
+                sqlCommand = new System.Data.SqlClient.SqlCommand("UPDATE [SEFASSIGNMENT].[dbo].[Student] SET \"Stu_TotalScore\"=" + FinalMark + " WHERE \"STU_ID\" ='" + StudentID + "'");
                 sqlCommand.Connection = sqlConnection;
                 object useless = sqlCommand.ExecuteScalar();
 
@@ -236,7 +236,7 @@ namespace trycross.Views.Home
             else
             {
                 sqlCommand = new System.Data.SqlClient.SqlCommand(
-                    "SELECT ATTEMPT_SCORE FROM [SEF_AssignmentEntities].[dbo].[Attempt] WHERE \"STU_ID\" ='" +
+                    "SELECT ATTEMPT_SCORE FROM [SEFASSIGNMENT].[dbo].[Attempt] WHERE \"STU_ID\" ='" +
                     StudentID + "' AND \"PUZZLE_ID\" = '" + PuzzleID + "'");
                 sqlCommand.Connection = sqlConnection;
                 int markbefore = Convert.ToInt32(sqlCommand.ExecuteScalar());
@@ -246,7 +246,7 @@ namespace trycross.Views.Home
                     string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
                     string datee = sqlFormattedDate;
                     sqlCommand = new System.Data.SqlClient.SqlCommand(
-                        "UPDATE [SEF_AssignmentEntities].[dbo].[Attempt] SET \"ATTEMPT_SCORE\"=" + summark +
+                        "UPDATE [SEFASSIGNMENT].[dbo].[Attempt] SET \"ATTEMPT_SCORE\"=" + summark +
                         " ,\"DATETIME_STAMP\"='" + datee + "' WHERE(\"STU_ID\" ='" + StudentID +
                         "' AND \"PUZZLE_ID\"='" + PuzzleID + "')");
 
@@ -255,13 +255,13 @@ namespace trycross.Views.Home
 
 
                     sqlCommand = new System.Data.SqlClient.SqlCommand(
-                        "SELECT SUM(Attempt_Score) FROM [SEF_AssignmentEntities].[dbo].[Attempt] WHERE \"STU_ID\" ='" +
+                        "SELECT SUM(Attempt_Score) FROM [SEFASSIGNMENT].[dbo].[Attempt] WHERE \"STU_ID\" ='" +
                         StudentID + "'");
                     sqlCommand.Connection = sqlConnection;
 
                     object finalmark = sqlCommand.ExecuteScalar();
                     int FinalMark = Convert.ToInt32(finalmark);
-                    sqlCommand = new System.Data.SqlClient.SqlCommand("UPDATE [SEF_AssignmentEntities].[dbo].[Student] SET \"Stu_TotalScore\"=" + FinalMark+ " WHERE \"STU_ID\" ='" +StudentID + "'");
+                    sqlCommand = new System.Data.SqlClient.SqlCommand("UPDATE [SEFASSIGNMENT].[dbo].[Student] SET \"Stu_TotalScore\"=" + FinalMark+ " WHERE \"STU_ID\" ='" +StudentID + "'");
                     sqlCommand.Connection = sqlConnection;
                     object useless = sqlCommand.ExecuteScalar();
 

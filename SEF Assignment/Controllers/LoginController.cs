@@ -10,7 +10,7 @@ namespace SEF_Assignment.Controllers
 {
     public class LoginController : Controller
     {
-        private SEF_AssignmentEntities db = new SEF_AssignmentEntities();
+        private SEFASSIGNMENT db = new SEFASSIGNMENT();
 
         // GET: choose identity
         [HttpGet]
@@ -127,7 +127,7 @@ namespace SEF_Assignment.Controllers
         [HttpGet]
         public ActionResult RegisterLec()
         {
-            string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
             sqlConnection.Open();
@@ -194,7 +194,7 @@ namespace SEF_Assignment.Controllers
         [HttpGet]
         public ActionResult RegisterStu()
         {
-            string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
             sqlConnection.Open();

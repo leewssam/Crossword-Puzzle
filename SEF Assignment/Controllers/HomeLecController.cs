@@ -76,12 +76,12 @@ namespace SEF_Assignment.Controllers
             String LecID = Session["LecID"].ToString();
             LecID = LecID.ToUpper();
 
-            string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
             sqlConnection.Open();
 
-            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_ID FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
+            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_ID FROM [SEFASSIGNMENT].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader myreader = sqlCommand.ExecuteReader();
             List<String> PuzzleIDList = new List<String>();
@@ -92,7 +92,7 @@ namespace SEF_Assignment.Controllers
 
             myreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_Name FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_Name FROM [SEFASSIGNMENT].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
             sqlCommand.Connection = sqlConnection;
 
             SqlDataReader newmyreader = sqlCommand.ExecuteReader();
@@ -173,13 +173,13 @@ namespace SEF_Assignment.Controllers
 
 
             string connectionString =
-                @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection =
                 new System.Data.SqlClient.SqlConnection(connectionString);
             sqlConnection.Open();
 
             System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT Answer_Content FROM [SEF_AssignmentEntities].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID +
+                "SELECT Answer_Content FROM [SEFASSIGNMENT].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID +
                 "'");
             sqlCommand.Connection = sqlConnection;
 
@@ -194,7 +194,7 @@ namespace SEF_Assignment.Controllers
             myreader.Close();
 
             sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT Question_Content FROM [SEF_AssignmentEntities].[dbo].[Question] WHERE Puzzle_ID='" + PuzzleID +
+                "SELECT Question_Content FROM [SEFASSIGNMENT].[dbo].[Question] WHERE Puzzle_ID='" + PuzzleID +
                 "'");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader newreader = sqlCommand.ExecuteReader();
@@ -227,7 +227,7 @@ namespace SEF_Assignment.Controllers
             ViewData["CanvasWriter"] = canvasWriter;
 
             sqlCommand = new System.Data.SqlClient.SqlCommand(
-                "SELECT COUNT(*) FROM [SEF_AssignmentEntities].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID + "'");
+                "SELECT COUNT(*) FROM [SEFASSIGNMENT].[dbo].[Answer] WHERE Puzzle_ID='" + PuzzleID + "'");
             sqlCommand.Connection = sqlConnection;
 
             int sumquestion = Convert.ToInt32(sqlCommand.ExecuteScalar());
@@ -247,12 +247,12 @@ namespace SEF_Assignment.Controllers
             String LecID = Session["LecID"].ToString();
             LecID = LecID.ToUpper();
 
-            string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
             sqlConnection.Open();
 
-            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_ID FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
+            System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_ID FROM [SEFASSIGNMENT].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
             sqlCommand.Connection = sqlConnection;
             SqlDataReader myreader = sqlCommand.ExecuteReader();
             List<String> PuzzleIDList = new List<String>();
@@ -263,7 +263,7 @@ namespace SEF_Assignment.Controllers
 
             myreader.Close();
 
-            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_Name FROM [SEF_AssignmentEntities].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
+            sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT Puzzle_Name FROM [SEFASSIGNMENT].[dbo].[Puzzle] WHERE LEC_ID='" + LecID + "'");
             sqlCommand.Connection = sqlConnection;
 
             SqlDataReader newmyreader = sqlCommand.ExecuteReader();
@@ -389,7 +389,7 @@ namespace SEF_Assignment.Controllers
                     removelistid.Add(item.StudentID);
                 }
 
-                string connectionString = @"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                string connectionString = @"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
                 System.Data.SqlClient.SqlCommand sqlCommand;
                 int tempcounter;
@@ -397,7 +397,7 @@ namespace SEF_Assignment.Controllers
 
                 for (int i = 0; i < removelistid.Count; i++)
                 {
-                    sqlCommand = new System.Data.SqlClient.SqlCommand("UPDATE [SEF_AssignmentEntities].[dbo].[Puzzle] Set Lec_ID ='DEL000' WHERE \"Puzzle_ID\" = '" + removelistid[i] + "'");
+                    sqlCommand = new System.Data.SqlClient.SqlCommand("UPDATE [SEFASSIGNMENT].[dbo].[Puzzle] Set Lec_ID ='DEL000' WHERE \"Puzzle_ID\" = '" + removelistid[i] + "'");
                     sqlCommand.Connection = sqlConnection;
                     tempcounter = sqlCommand.ExecuteNonQuery();
                 }
@@ -454,30 +454,30 @@ namespace SEF_Assignment.Controllers
                     String QuestionID;
 
 
-                    string connectionString =@"Data Source=SAM-7559\SQLEXPRESS;Initial Catalog=SEF_AssignmentEntities;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                    string connectionString =@"Data Source=msi;Initial Catalog=SEFASSIGNMENT;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                     System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
                     sqlConnection.Open();
 
-                    System.Data.SqlClient.SqlCommand sqlCommand =new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM [SEF_AssignmentEntities].[dbo].[Puzzle]");
+                    System.Data.SqlClient.SqlCommand sqlCommand =new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM [SEFASSIGNMENT].[dbo].[Puzzle]");
                     sqlCommand.Connection = sqlConnection;
                     int count = Convert.ToInt32(sqlCommand.ExecuteScalar()) + 1;
                     String PuzzleID = "PZ" + count.ToString("000");
 
-                    sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEF_AssignmentEntities].[dbo].[Puzzle] (\"Puzzle_ID\", \"Puzzle_Name\", Puzzle_Score, Hint_Score,\"LEC_ID\") VALUES('" +PuzzleID + "','" + PuzzleName + "'," + PuzzleScore + "," + PuzzleHint + ",'" + LecID +"')");
-                    //return Content("INSERT INTO [SEF_AssignmentEntities].[dbo].[Puzzle] (\"Puzzle_ID\", \"Puzzle_Name\", Puzzle_Score, Hint_Score,\"LEC_ID\") VALUES('" + PuzzleID + "','" + PuzzleName + "'," + PuzzleScore + "," + PuzzleHint + ",'" + LecID + "')");
+                    sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEFASSIGNMENT].[dbo].[Puzzle] (\"Puzzle_ID\", \"Puzzle_Name\", Puzzle_Score, Hint_Score,\"LEC_ID\") VALUES('" +PuzzleID + "','" + PuzzleName + "'," + PuzzleScore + "," + PuzzleHint + ",'" + LecID +"')");
+                    //return Content("INSERT INTO [SEFASSIGNMENT].[dbo].[Puzzle] (\"Puzzle_ID\", \"Puzzle_Name\", Puzzle_Score, Hint_Score,\"LEC_ID\") VALUES('" + PuzzleID + "','" + PuzzleName + "'," + PuzzleScore + "," + PuzzleHint + ",'" + LecID + "')");
                     sqlCommand.Connection = sqlConnection;
                     count = Convert.ToInt32(sqlCommand.ExecuteScalar());
                   
 
                     for (int i = 0; i < Answer.Length; i++)
                     {
-                        sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM [SEF_AssignmentEntities].[dbo].[Answer]");
+                        sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM [SEFASSIGNMENT].[dbo].[Answer]");
                         sqlCommand.Connection = sqlConnection;
                         counter = Convert.ToInt32(sqlCommand.ExecuteScalar()) + 1;
                         AnswerID = "ANS" + counter.ToString("000");
 
-                        sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEF_AssignmentEntities].[dbo].[Answer] (\"Answer_ID\", \"Answer_Content\", \"Puzzle_ID\") VALUES('" + AnswerID + "','" + Answer[i] + "','"  + PuzzleID + "')");
+                        sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEFASSIGNMENT].[dbo].[Answer] (\"Answer_ID\", \"Answer_Content\", \"Puzzle_ID\") VALUES('" + AnswerID + "','" + Answer[i] + "','"  + PuzzleID + "')");
                         sqlCommand.Connection = sqlConnection;
                         tempcounter = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
@@ -485,12 +485,12 @@ namespace SEF_Assignment.Controllers
 
                     for (int i = 0; i < Question.Length; i++)
                     {
-                        sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM [SEF_AssignmentEntities].[dbo].[Question]");
+                        sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM [SEFASSIGNMENT].[dbo].[Question]");
                         sqlCommand.Connection = sqlConnection;
                         counter = Convert.ToInt16(sqlCommand.ExecuteScalar()) + 1;
                         QuestionID = "QS" + counter.ToString("000");
 
-                        sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEF_AssignmentEntities].[dbo].[Question] (\"Question_ID\", \"Question_Content\", \"Puzzle_ID\") VALUES('" + QuestionID + "','" + Question[i] + "','" + PuzzleID + "')");
+                        sqlCommand = new System.Data.SqlClient.SqlCommand("INSERT INTO [SEFASSIGNMENT].[dbo].[Question] (\"Question_ID\", \"Question_Content\", \"Puzzle_ID\") VALUES('" + QuestionID + "','" + Question[i] + "','" + PuzzleID + "')");
                         sqlCommand.Connection = sqlConnection;
                         tempcounter = Convert.ToInt32(sqlCommand.ExecuteScalar());
                     }

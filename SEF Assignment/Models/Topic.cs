@@ -11,6 +11,7 @@ namespace SEF_Assignment.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Topic
     {
@@ -23,7 +24,9 @@ namespace SEF_Assignment.Models
         public string Stu_ID { get; set; }
         public string Lec_ID { get; set; }
         public string Topic_ID { get; set; }
+        [Required]
         public string Topic_Title { get; set; }
+        [Required]
         public string Topic_Content { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

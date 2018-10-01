@@ -13,10 +13,10 @@ namespace SEF_Assignment.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SEF_AssignmentEntities : DbContext
+    public partial class SEFASSIGNMENT : DbContext
     {
-        public SEF_AssignmentEntities()
-            : base("name=SEF_AssignmentEntities")
+        public SEFASSIGNMENT()
+            : base("name=SEFASSIGNMENT")
         {
         }
     
